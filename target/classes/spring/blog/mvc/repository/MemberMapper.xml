@@ -2,8 +2,8 @@
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="spring.blog.repository.MemberMapper">
-	<insert id="MemberInsert" parameterType="spring.blog.bean.MemberDTO">
+<mapper namespace="spring.blog.mvc.repository.MemberMapper">
+	<insert id="MemberInsert" parameterType="spring.blog.mvc.bean.MemberDTO">
 		insert into member (num, id, pw, nic, name, birth, 
 		gender, phone, address, email, grade. image, reg_date)
 	</insert>

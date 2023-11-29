@@ -26,5 +26,5 @@
    		<property name="configLocation" value="/WEB-INF/spring/mybatis-config.xml" />
    </bean>
    
-   <mybatis-spring:scan base-package="test.spring.mvc.repository"/>
+   <mybatis-spring:scan base-package="spring.blog.mvc.repository"/>
 </beans>
