@@ -1,14 +1,16 @@
 package spring.blog.mvc.bean;
 
+import java.util.Date;
+
 import lombok.Data;
 
 @Data
-public class NoticeDTO {
+public class BoardDTO {
 	private int num;
 	private String writer;
 	private String title;
 	private String content;
-	private String reg_date;
+	private Date reg_date;
 	private int readcount;
 	private int boardnum;
 	private int files;
