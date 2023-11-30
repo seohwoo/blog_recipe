@@ -1,5 +1,8 @@
 package spring.blog.mvc.repository;
 
-public interface NoticeMapper {
+import spring.blog.mvc.bean.NoticeDTO;
 
+public interface NoticeMapper {
+	
+	public void writeNotice(NoticeDTO dto);
 }
