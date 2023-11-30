@@ -4,7 +4,7 @@
     "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
      <mapper namespace="spring.blog.mvc.repository.NoticeMapper">
-     	<insert id="writeNotice" parameterType="noticeDTO">
+     	<insert id="writeNotice" parameterType="BoardDTO">
      		insert into board values(notice_seq.nextval, #{writer}, #{title}, #{content}, sysdate, 0, #{boardnum}, ${files}, #{tablenum})
      	</insert>
      	
