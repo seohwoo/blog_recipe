@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="spring.blog.mvc.repository.ImgMapper">
+	
+	<insert id="imgWirte" parameterType="spring.blog.mvc.bean.BoardDTO">
+		insert into board
+		(num, writer, title, content, reg_date, boardnum, tablenum, files) values(
+			board_seq.NEXTVAL,
+			#{writer},
+			#{title},
+			#{content},
+			sysdate,
+			#{boardnum},
+			99,
+			#{files}
+		)
+	</insert>
+	
+	<select id="maxNum" resultType="int">
+		select NVL(max(num), 0) from board where tablenum=99
+	</select>
+	
+	<insert id="imgFileInsert">
+		insert into files values(
+			board_file_seq.NEXTVAL,
+			#{boardnum},
+			#{filename},
+			99
+		)
+	</insert>
+	
+	<select id="selectNum" parameterType="int" resultType="int">
+		select num from board where tablenum=99 and boardnum=#{boardnum}
+	</select>
+	
+</mapper>
