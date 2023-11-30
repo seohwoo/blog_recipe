@@ -5,8 +5,7 @@ import java.util.Date;
 import lombok.Data;
 
 @Data
-public class ImgBoardDTO {
-
+public class BoardDTO {
 	private int num;
 	private String writer;
 	private String title;
