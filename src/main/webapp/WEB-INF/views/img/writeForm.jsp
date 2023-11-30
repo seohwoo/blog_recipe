@@ -13,7 +13,7 @@ pageEncoding="UTF-8"%>
     		<br /><br />
 		   	<h2>💌게시글작성💌</h2>
 		   	<br /><br />
-			<form action="/img/writePro" method="post" enctype="multipart/form-data">
+			<form action="/img/writePro?pageNum=${pageNum }" method="post" enctype="multipart/form-data">
 		   		<label>작성자</label>
 		   		<input type="text" name="writer"/>
 			   	<c:if test="${boardnum==0 }">
