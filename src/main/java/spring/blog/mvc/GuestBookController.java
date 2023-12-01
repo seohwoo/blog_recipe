@@ -28,7 +28,6 @@ public class GuestBookController {
 	
 	@RequestMapping("guestBookForm")
 	public String guestBookInsert(Model model, HttpSession session) {
-		
 		List<BoardDTO> list = GuestBookService.guestBookList();
 		model.addAttribute("list", list);
 
@@ -40,31 +39,7 @@ public class GuestBookController {
 	
 	@RequestMapping("guestBookPro")
 	public String guestBookInsertPro(BoardDTO dto, HttpSession session, Model model) {
-		/*
-		String id = (String)session.getAttribute("memId");
-		MemberDTO member = memberservice.member(id);
-		model.addAttribute("member", member);
-		*/
-		
 		GuestBookService.guestBookInsert(dto);
 		return "redirect:/guestbook/guestBookForm";
 	}
-
-	
-	
-	/*
-	@RequestMapping("writePro")
-	public String writePro(GuestBookDTO dto) {
-		GuestBookService.guestBookInsert(dto);
-		return "redirect:/guestbook/writeForm";
-	}
-	*/
-	/*
-	@RequestMapping("bookList")
-	public String bookList(Model model) {
-		List<GuestBookDTO> list = service.bookList();
-		model.addAttribute("list", list);
-		return "guestbook/bookList";
-	}
-	*/
 }

@@ -10,6 +10,6 @@
 	</insert>
 	
 	<select id="guestBookList" resultType="spring.blog.mvc.bean.BoardDTO">
-		select * from board order by reg_date desc
+		select * from board where tablenum=30 order by reg_date desc
 	</select>
 </mapper>
