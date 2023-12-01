@@ -13,4 +13,8 @@ public interface ImgService {
 	public int fileUpload(List<MultipartFile> files, String path);
 	public void showimgList(int pageNum, Model model);
 	public void read(int num, Model model);
+	public int delete(int num, String path);
+	public int update(BoardDTO dto);
+	public void shoimgSubList(int pageNum, Model model);
+	
 }

@@ -48,13 +48,13 @@ pageEncoding="UTF-8"%>
 				  <tr height="30">      
 				    <td>
 						<input type="button" value="글수정" 
-						onclick="document.location.href='/free/updateForm?num=${article.num}&pageNum=${pageNum}'">
+						onclick="document.location.href='/img/update?num=${dto.num}&pageNum=${pageNum}'">
 						&nbsp;&nbsp;&nbsp;&nbsp;
 						<input type="button" value="글삭제" 
-						onclick="document.location.href='/free/deleteForm?num=${article.num}&pageNum=${pageNum}'">
+						onclick="document.location.href='/img/delete?num=${dto.num}&pageNum=${pageNum}'">
 						&nbsp;&nbsp;&nbsp;&nbsp;
 						<input type="button" value="댓글쓰기" 
-						onclick="document.location.href='/free/writeForm?num=${article.num}&ref=${article.ref}&re_step=${article.re_step}&re_level=${article.re_level}'">
+						onclick="document.location.href='/img/write?boardnum=${dto.num}&pageNum=${pageNum}'">
 						&nbsp;&nbsp;&nbsp;&nbsp;
 				       <input type="button" value="글목록" 
 				       onclick="document.location.href='/img/list?pageNum=${pageNum}'">

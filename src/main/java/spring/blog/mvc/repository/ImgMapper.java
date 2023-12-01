@@ -17,7 +17,10 @@ public interface ImgMapper {
 								@Param("filename") String filename);
 	public int listCount();
 	public List<BoardDTO> showList(HashMap<String, Integer> map);
-	public List<FilesDTO> fileList(int boardnum);
 	public BoardDTO readBoard(@Param("num") int num);
-	public List<FilesDTO> readfiles(@Param("num") int boardnum);
+	public List<FilesDTO> readfiles(@Param("num") int num);
+	public int deleteBoard(int num);
+	public int deletefiles(int boardnum);
+	public int updateBoard(BoardDTO dto);
+	public List<BoardDTO> showDat(HashMap<String, Integer> map);
 }

@@ -43,13 +43,9 @@
 		<![CDATA[
 			select * from 
 			(select b.*, rownum r from 
-			(select * from board order by reg_date desc) b) 
-			where r >= #{start} and r <= #{end} and tablenum=99
+			(select * from board where tablenum=99 and boardnum=0 order by reg_date desc) b) 
+			where r >= #{start} and r <= #{end}
 		]]>
-	</select>
-	
-	<select id="fileList" parameterType="int" resultType="spring.blog.mvc.bean.FilesDTO">
-		select * from files where boardnum=#{boardnum}
 	</select>
 	
 	<select id="readBoard" parameterType="int" resultType="spring.blog.mvc.bean.BoardDTO">
@@ -57,7 +53,28 @@
 	</select>
 	
 	<select id="readfiles" parameterType="int" resultType="spring.blog.mvc.bean.FilesDTO">
-		select * from files where boardnum = #{num} and tablenum=99
+		select * from files where boardnum=#{num} and tablenum=99
+	</select>
+	
+	<delete id="deleteBoard" parameterType="int">
+		delete from board where num=#{num}
+	</delete>
+
+	<delete id="deletefiles" parameterType="int">
+		delete from files where boardnum=#{boardnum}
+	</delete>
+	
+	<update id="updateBoard" parameterType="spring.blog.mvc.bean.BoardDTO">
+		update board set writer=#{writer}, title=#{title}, content=#{content} where num=#{num}
+	</update>
+	
+	<select id="showDat" parameterType="hashmap" resultType="spring.blog.mvc.bean.BoardDTO">
+		<![CDATA[
+			select * from 
+			(select b.*, rownum r from 
+			(select * from board where tablenum=99 and boardnum>0 order by reg_date desc) b) 
+			where r >= #{start} and r <= #{end}
+		]]>
 	</select>
 	
 </mapper>

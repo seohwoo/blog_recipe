@@ -4,9 +4,12 @@
 <c:if test="${check==1}">
 	<meta http-equiv="Refresh" content="0;url=/img/list?pageNum=${pageNum }" >
 </c:if>
-<c:if test="${check!=1 && result!=1}">
+<c:if test="${check!=1 }">
 	<script language="JavaScript">      
-    	alert("오류입니다..!!🤬🤬🤬");
+    	alert("실..패..!!🤬🤬🤬");
     	history.go(-1);
 	</script>
 </c:if>
+
+
+ 

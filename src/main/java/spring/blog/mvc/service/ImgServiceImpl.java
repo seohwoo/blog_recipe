@@ -1,11 +1,12 @@
 package spring.blog.mvc.service;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
@@ -18,6 +19,8 @@ import spring.blog.mvc.repository.ImgMapper;
 @Service
 public class ImgServiceImpl implements ImgService{
 
+	private static final Logger logger = LoggerFactory.getLogger(ImgServiceImpl.class);
+	
 	@Autowired
 	private ImgMapper mapper;
 	@Autowired
@@ -69,11 +72,11 @@ public class ImgServiceImpl implements ImgService{
 		int cnt = mapper.listCount();
 		List<BoardDTO> userList = Collections.EMPTY_LIST;
 		if(cnt > 0) {
-			boardMap.put("end", end);
 			boardMap.put("start", start);
+			boardMap.put("end", end);
 			userList = mapper.showList(boardMap);
 			for (BoardDTO boardDTO : userList) {
-				imgMap.put(boardDTO.getNum(),mapper.fileList(boardDTO.getNum()).get(0));
+				imgMap.put(boardDTO.getNum(),mapper.readfiles(boardDTO.getNum()).get(0));
 			}
 		}
 		model.addAttribute("userList", userList);
@@ -99,9 +102,36 @@ public class ImgServiceImpl implements ImgService{
 	@Override
 	public void read(int num, Model model) {
 		BoardDTO dto = mapper.readBoard(num);
-		List<FilesDTO> fileList = mapper.fileList(num);
+		List<FilesDTO> fileList = mapper.readfiles(num);
 		model.addAttribute("dto", dto);
 		model.addAttribute("fileList", fileList);
+	}
+	
+	@Override
+	public int delete(int num, String path) {
+		int check = mapper.deleteBoard(num);
+		if(check==1) {
+			List<FilesDTO> fileList = mapper.readfiles(num);
+			for (FilesDTO dto : fileList) {
+				File file = new File(path+dto.getFilename());
+				if(file.isFile()) {
+					file.delete();
+				}
+			}
+			mapper.deletefiles(num);
+		}
+		return check;
+	}
+
+	@Override
+	public int update(BoardDTO dto) {
+		int check = mapper.updateBoard(dto);
+		return check;
+	}
+
+	@Override
+	public void shoimgSubList(int pageNum, Model model) {
+		
 	}
 
 }
