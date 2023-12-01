@@ -16,7 +16,11 @@ public interface NoticeMapper {
 	public List<BoardDTO> noticeList(HashMap map);
 	public void readCountUp(int num);
 	public BoardDTO readContent(int num);
-	public List<FilesDTO> readfiles(int boardnum);
+	public List<FilesDTO> readFiles(int boardnum);
 	public void writeReply(BoardDTO dto);
 	public List<BoardDTO> replyList(int boardnum);
+	public int replyCount (int boardnum);
+	public int deleteContent(int num);
+	public int deleteReply(int boardnum);
+	public int deleteFiles(int boardnum);
 }

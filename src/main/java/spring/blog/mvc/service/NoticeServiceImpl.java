@@ -61,13 +61,13 @@ public class NoticeServiceImpl implements NoticeService {
 	public void noticeList(int pageNum, Model model) {
 		int pageSize = 5;
 		int startRow = (pageNum - 1)*pageSize+1;
-		int endRow = pageNum*pageSize;
+		//int endRow = pageNum*pageSize;
 		
 		int count = mapper.contentNum();
 		List<BoardDTO> list=Collections.EMPTY_LIST;
 		if(count > 0 ) {
 			noticeMap.put("start", startRow);
-			noticeMap.put("end", endRow);
+			noticeMap.put("end", count);
 			list = mapper.noticeList(noticeMap);
 		}
 		
@@ -76,10 +76,10 @@ public class NoticeServiceImpl implements NoticeService {
 		model.addAttribute("pageNum", pageNum);
 		model.addAttribute("pageSize", pageSize);
 		
-		int pageCount = count / pageSize + ( count % pageSize == 0 ? 0 : 1);
+		int pageCount = list.size() / pageSize + ( list.size() % pageSize == 0 ? 0 : 1);
 		 
         int startPage = (int)(pageNum/10)*10+1;
-		int pageBlock=10;
+		int pageBlock=5;
         int endPage = startPage + pageBlock-1;
         if (endPage > pageCount) endPage = pageCount;
         
@@ -87,6 +87,7 @@ public class NoticeServiceImpl implements NoticeService {
         model.addAttribute("startPage", startPage);
         model.addAttribute("endPage", endPage);
         model.addAttribute("pageBlock", pageBlock);	
+        
 	}
 	@Override
 	public BoardDTO readContent(int num) {
@@ -94,8 +95,8 @@ public class NoticeServiceImpl implements NoticeService {
 		return mapper.readContent(num);
 	}
 	@Override
-	public List<FilesDTO> readfiles(int boardnum) {
-		return mapper.readfiles(boardnum);
+	public List<FilesDTO> readFiles(int boardnum) {
+		return mapper.readFiles(boardnum);
 	}
 	@Override
 	public void writeReply(BoardDTO dto) {
@@ -107,6 +108,28 @@ public class NoticeServiceImpl implements NoticeService {
 	@Override
 	public List<BoardDTO> replyList(int boardnum) {
 		return mapper.replyList(boardnum);
+	}
+	@Override
+	public int replyCount(int boardnum) {
+		return mapper.replyCount(boardnum);
+	}
+	@Override
+	public int deleteContent(int num, String path) {
+		int result=0;
+		
+		List<FilesDTO> filelist = mapper.readFiles(num);
+			if(filelist!=null) {
+				for(FilesDTO filesDTO : filelist) {
+					File f = new File(path+filesDTO.getFilename());
+					if(f.isFile()) {
+						f.delete();
+				}
+			}
+			mapper.deleteFiles(num);
+			mapper.deleteReply(num);
+			result = mapper.deleteContent(num);
+		}
+		return result;
 	}
 
 	

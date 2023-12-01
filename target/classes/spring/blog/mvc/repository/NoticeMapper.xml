@@ -11,10 +11,19 @@
      		select NVL(max(num),0) from board where tablenum=1
      	</select>
      	<insert id="writeNotice" parameterType="spring.blog.mvc.bean.BoardDTO">
-     		insert into board values(board_seq.nextval, #{writer}, #{title}, #{content}, sysdate, #{boardnum}, 0, #{files}, 1)
+     		insert into board(num,writer,title,content,reg_date,boardnum,files,tablenum) values(
+		         board_seq.NEXTVAL,
+		         #{writer},
+		         #{title},
+		         #{content},
+		         sysdate,
+		         #{boardnum},
+		         #{files},
+         		 1
+     			 )
      	</insert>
      	<insert id="fileUpload">
-     		insert into files values(board_file_seq.nextval, #{boardnum}, #{filename}, #{tablenum})
+     		insert into files values(board_file_seq.nextval, #{boardnum}, #{filename}, 1)
      	</insert>
      	
      	<select id="noticeList" parameterType="java.util.HashMap" resultType="spring.blog.mvc.bean.BoardDTO">
@@ -38,5 +47,17 @@
      	<select id="replyList" parameterType="int" resultType="spring.blog.mvc.bean.BoardDTO">
      		select * from board where tablenum=1 and boardnum=#{boardnum}
      	</select>
+     	<select id="replyCount" parameterType="int">
+     		select count(*) from board where tablenum=1 and boardnum=#{boardnum}
+     	</select>
      	
+     	<delete id="deleteContent">
+     		delete from board where num=#{num}
+     	</delete>
+     	<delete id="deleteReply">
+     		delete from board where boardnum=#{boardnum}
+     	</delete>
+     	<delete id="deleteFiles">
+     		delete from files where boardnum=#{boardnum}
+     	</delete>
      </mapper>

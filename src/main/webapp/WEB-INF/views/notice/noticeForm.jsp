@@ -18,11 +18,11 @@
 			</tr>
 			<tr>
 				<td>제목</td>
-				<td><input type="text" id="title" maxlength="50" /></td>
+				<td><input type="text" name="title" maxlength="50" /></td>
 			</tr>
 			<tr>
 				<td>작성자</td>
-				<td><input type="text" id="writer" value="admin" /></td>
+				<td><input type="text" name="writer"/></td>
 			</tr>
 			<tr>
 				<td>내용</td>
@@ -30,7 +30,7 @@
 			</tr>
 			<tr>
 				<td>파일 첨부</td>
-				<td><input type="file" name="files" multiple="multiple"></td>
+				<td><input type="file" name="filelist" multiple="multiple"></td>
 			</tr>
 			<tr>      
  				<td colspan="2"> 

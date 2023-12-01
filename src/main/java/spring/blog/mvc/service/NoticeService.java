@@ -16,7 +16,9 @@ public interface NoticeService {
 	public int fileUpload(List<MultipartFile> filelist, String path);
 	public void noticeList(int pageNum, Model model);
 	public BoardDTO readContent(int num);
-	public List<FilesDTO> readfiles(int boardnum);
+	public List<FilesDTO> readFiles(int boardnum);
 	public void writeReply(BoardDTO dto);
 	public List<BoardDTO> replyList(int boardnum);
+	public int replyCount (int boardnum);
+	public int deleteContent(int num, String path);
 }

@@ -37,7 +37,7 @@
 		<c:forEach var="notice" items="#{list}">
 			<tr>
 				<td>${notice.num}</td>
-		 		<td><a href="/notice/content?num=${notice.num}&pagenum=${pagenum}">${notice.title}</a></td>
+		 		<td><a href="/notice/content?num=${notice.num}&pageNum=${pageNum}">${notice.title}</a></td>
 				<td>${notice.writer}</td>
 				<td><fmt:formatDate pattern="yyyy/MM/dd" value="${notice.reg_date}" /></td>
 		 		<td>${notice.readcount}</td>
