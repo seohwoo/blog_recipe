@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import spring.blog.mvc.bean.BoardDTO;
 import spring.blog.mvc.bean.GuestBookDTO;
 import spring.blog.mvc.repository.GuestBookMapper;
 
@@ -15,12 +16,11 @@ public class GuestBookServiceImpl implements GuestBookService {
 	private GuestBookMapper mapper;
 
 	@Override
-	public void write(GuestBookDTO dto) {
-		mapper.write(dto);
+	public void guestBookInsert(BoardDTO dto) {
+		mapper.guestBookInsert(dto);
 	}
-
 	@Override
-	public List<GuestBookDTO> bookList() {
-		return mapper.bookList();
+	public List<BoardDTO> guestBookList() {
+		return mapper.guestBookList();
 	}
 }

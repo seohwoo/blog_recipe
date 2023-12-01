@@ -12,5 +12,6 @@
 		https://www.springframework.org/schema/context/spring-context.xsd">
 	
 	<beans:bean id="memberDTO" class="spring.blog.mvc.bean.MemberDTO"/>
+	<beans:bean id="boardDTO" class="spring.blog.mvc.bean.BoardDTO"/>
 		
 </beans:beans>
