@@ -8,9 +8,8 @@
 </head>
 <body>
 <center>
-	<form method="post" enctype="multipart/form-data" name="noticeform" action="/notice/form">
-	<input type="hidden" value="${boardnum}" name="boardnum" />
-	<input type="hidden" value="${num}" name="num" />
+	<form method="post" enctype="multipart/form-data" name="noticeform" action="/notice/formPro">
+	<input type="hidden" value="${num}" name="boardnum" />
 		<table>
 			<tr>
 				<td align="right">
@@ -31,14 +30,12 @@
 			</tr>
 			<tr>
 				<td>파일 첨부</td>
-				<td><input type="file" name="files"></td>
+				<td><input type="file" name="files" multiple="multiple"></td>
 			</tr>
 			<tr>      
- 				<td> 
+ 				<td colspan="2"> 
   					<input type="submit" value="작성완료" >  
   				</td>
-  				<td>
-  				<input type="reset" value="다시작성"></td>
   			</tr>
 		</table>
 	</form>

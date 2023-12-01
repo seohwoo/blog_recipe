@@ -9,15 +9,15 @@
 </head>
 <body>
 <center>
-<%--
+
 	<table>
 		<tr>
-		<c:if test="관리자일때 조건">
-			<td align="right"><a href="/notice/form">글쓰기</a></td></c:if>
+		
+			<td align="right"><a href="/notice/form">글쓰기</a></td>
 		</tr>
 	</table>
 	<br />
-	 --%>		
+	
 	<c:if test="${count == 0}">
 	<table>
 		<tr>
