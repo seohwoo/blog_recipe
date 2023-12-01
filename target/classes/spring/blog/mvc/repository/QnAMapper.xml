@@ -4,4 +4,47 @@
     "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="spring.blog.mvc.repository.QnAMapper">
 
+	<insert id="writeInsert" parameterType="spring.blog.mvc.bean.BoardDTO">
+		insert into board(num,writer,title,content,reg_date,
+			boardnum,files,tablenum) values(
+			board_seq.NEXTVAL,
+			#{writer},
+			#{title},
+			#{content},
+			sysdate,
+			0,
+			#{files},
+			77
+		)
+	</insert>
+	
+	<update id="updateCountUp">
+		update board set readcount=readcount+1 where num = #{num}
+	</update>
+	
+	<select id="readNum" resultType="spring.blog.mvc.bean.BoardDTO">
+		select * from board where num = #{num}
+	</select>
+	
+	<select id="maxBoardNum" resultType="int">
+		select NVL(max(num),0) from board where tablenum=77 
+	</select>
+	
+	<select id="count" resultType="int">
+		select count(*) from board where tablenum=77 
+	</select>
+	
+	
+	<insert id="fileInsert" parameterType="spring.blog.mvc.bean.FilesDTO">
+		insert into files values(
+			board_file_seq.nextval,
+			#{boardnum},
+			#{filename},
+			77
+		)
+	</insert>
+	<select id="fileList" resultType="spring.blog.mvc.bean.FilesDTO">
+		select * from files where boardnum=#{boardnum} and tablenum=77
+	</select>
+
 </mapper>
