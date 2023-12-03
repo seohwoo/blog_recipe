@@ -100,11 +100,27 @@ public class ImgServiceImpl implements ImgService{
 	}
 
 	@Override
+	public void readcountUp(int num) {
+		mapper.readcountUp(num);
+	}
+	
+	@Override
 	public void read(int num, Model model) {
 		BoardDTO dto = mapper.readBoard(num);
 		List<FilesDTO> fileList = mapper.readfiles(num);
 		model.addAttribute("dto", dto);
 		model.addAttribute("fileList", fileList);
+	}
+	
+	@Override
+	public void readReply(int num, Model model) {
+		List<BoardDTO> list = mapper.readReplyBoard(num);
+		int check = 0;
+		if(list != null) {
+			check = list.size();
+		}
+		model.addAttribute("replyList", list);
+		model.addAttribute("check", check);
 	}
 	
 	@Override
@@ -129,9 +145,6 @@ public class ImgServiceImpl implements ImgService{
 		return check;
 	}
 
-	@Override
-	public void shoimgSubList(int pageNum, Model model) {
-		
-	}
+
 
 }

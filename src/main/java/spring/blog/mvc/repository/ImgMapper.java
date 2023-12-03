@@ -17,10 +17,11 @@ public interface ImgMapper {
 								@Param("filename") String filename);
 	public int listCount();
 	public List<BoardDTO> showList(HashMap<String, Integer> map);
+	public void readcountUp(@Param("num") int num);
 	public BoardDTO readBoard(@Param("num") int num);
 	public List<FilesDTO> readfiles(@Param("num") int num);
 	public int deleteBoard(int num);
 	public int deletefiles(int boardnum);
 	public int updateBoard(BoardDTO dto);
-	public List<BoardDTO> showDat(HashMap<String, Integer> map);
+	public List<BoardDTO> readReplyBoard(@Param("num") int num);
 }

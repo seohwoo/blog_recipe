@@ -27,7 +27,7 @@ pageEncoding="UTF-8"%>
 			   	<br />
 		   		<input type="hidden" name="boardnum" value="${boardnum }"/>
 		   		<c:if test="${boardnum!=0 }">
-			   		<input type="hidden" name="title" value="타이틀"/>
+			   		<input type="hidden" name="title" value="이미지댓글"/>
 			   		<input type="hidden" name="files" value="0"/>
 			   	</c:if>
 			   	<input type="submit" value="글쓰기"/>

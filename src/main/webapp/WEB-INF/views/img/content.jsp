@@ -63,6 +63,29 @@ pageEncoding="UTF-8"%>
 				</table>
 			</form>
 			<br />
+			<table>
+				<c:if test="${check == 0 }">
+					<tr>
+						<td>댓글이 없습니다...😪😪😪😪</td>
+					</tr>
+				</c:if>
+				<c:if test="${check > 0 }">
+					<c:forEach var="replyDTO" items="${replyList}">
+						<tr>
+							<td>번호</td>
+							<td>작성자</td>
+							<td>내용</td>
+							<td>날짜</td>
+						</tr>
+						<tr>
+							<td>${replyDTO.num}</td>
+							<td>${replyDTO.writer}</td>
+							<td>${replyDTO.content}</td>
+							<td><fmt:formatDate value="${replyDTO.reg_date}" dateStyle="short" type="date"/></td>
+						</tr>
+					</c:forEach>
+				</c:if>
+			</table>
 		</center>     
 	</body>
 </html>

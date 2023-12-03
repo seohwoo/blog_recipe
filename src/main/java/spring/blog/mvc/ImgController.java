@@ -53,7 +53,9 @@ public class ImgController {
 	@RequestMapping("content")
 	public String content(int num, int pageNum, Model model) {
 		model.addAttribute("pageNum", pageNum);
+		service.readcountUp(num);
 		service.read(num, model);
+		service.readReply(num, model);
 		return "img/content";
 	}
 	

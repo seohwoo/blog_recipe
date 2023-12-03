@@ -48,6 +48,10 @@
 		]]>
 	</select>
 	
+	<update id="readcountUp" parameterType="int">
+		update board set readcount=readcount+1 where num=#{num} and tablenum=99
+	</update>
+	
 	<select id="readBoard" parameterType="int" resultType="spring.blog.mvc.bean.BoardDTO">
 		select * from board where num = #{num} and tablenum=99
 	</select>
@@ -68,13 +72,8 @@
 		update board set writer=#{writer}, title=#{title}, content=#{content} where num=#{num}
 	</update>
 	
-	<select id="showDat" parameterType="hashmap" resultType="spring.blog.mvc.bean.BoardDTO">
-		<![CDATA[
-			select * from 
-			(select b.*, rownum r from 
-			(select * from board where tablenum=99 and boardnum>0 order by reg_date desc) b) 
-			where r >= #{start} and r <= #{end}
-		]]>
+	<select id="readReplyBoard" parameterType="int" resultType="spring.blog.mvc.bean.BoardDTO">
+		select * from board where boardnum=#{num} and tablenum=99 order by reg_date desc 
 	</select>
 	
 </mapper>
