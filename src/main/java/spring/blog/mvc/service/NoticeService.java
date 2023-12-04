@@ -21,4 +21,6 @@ public interface NoticeService {
 	public List<BoardDTO> replyList(int boardnum);
 	public int replyCount (int boardnum);
 	public int deleteContent(int num, String path);
+	public int updateNotice(BoardDTO dto);
+	public int adminCheck(String id);
 }

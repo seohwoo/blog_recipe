@@ -12,15 +12,7 @@
      	</select>
      	<insert id="writeNotice" parameterType="spring.blog.mvc.bean.BoardDTO">
      		insert into board(num,writer,title,content,reg_date,boardnum,files,tablenum) values(
-		         board_seq.NEXTVAL,
-		         #{writer},
-		         #{title},
-		         #{content},
-		         sysdate,
-		         #{boardnum},
-		         #{files},
-         		 1
-     			 )
+		         board_seq.NEXTVAL, #{writer}, #{title}, #{content}, sysdate, #{boardnum}, #{files}, 1)
      	</insert>
      	<insert id="fileUpload">
      		insert into files values(board_file_seq.nextval, #{boardnum}, #{filename}, 1)
@@ -28,9 +20,15 @@
      	
      	<select id="noticeList" parameterType="java.util.HashMap" resultType="spring.blog.mvc.bean.BoardDTO">
      		<![CDATA[
-     		select * from (select b.*, rownum r from (select * from board order by reg_date desc) b) where r >= #{start} and r <= #{end} and tablenum=1
+     		select * from (select b.*, rownum r from (select * from board order by reg_date desc) b) where r >= #{start} and r <= #{end} and tablenum=1 and boardnum=0
      		]]>
      	</select>
+     	<select id="noticeListCount" parameterType="java.util.HashMap" resultType="int">
+     		<![CDATA[
+     		select count(*) from (select b.*, rownum r from (select * from board order by reg_date desc) b) where r >= #{start} and r <= #{end} and tablenum=1 and boardnum=0
+     		]]>
+     	</select>
+     	
      	<update id="readCountUp">
      		update board set readcount=readcount+1 where num=#{num}
      	</update>
@@ -42,7 +40,8 @@
      	</select>
      	
      	<insert id="writeReply" parameterType="spring.blog.mvc.bean.BoardDTO">
-     		insert into board values(board_seq.nextval, #{writer}, #{title}, #{content}, sysdate, 0, #{boardnum}, #{files}, 1)
+     		insert into board(num,writer,title,content,reg_date,boardnum,tablenum) values(
+		         board_seq.NEXTVAL, #{writer}, #{title}, #{content}, sysdate, #{boardnum}, 1)
      	</insert>
      	<select id="replyList" parameterType="int" resultType="spring.blog.mvc.bean.BoardDTO">
      		select * from board where tablenum=1 and boardnum=#{boardnum}
@@ -60,4 +59,17 @@
      	<delete id="deleteFiles">
      		delete from files where boardnum=#{boardnum}
      	</delete>
+     	
+     	<update id="updateNotice" parameterType="spring.blog.mvc.bean.BoardDTO">
+     		update board <set>
+     				<if test="writer != null">writer=#{writer},</if>
+     				<if test="title != null">title=#{title},</if>
+     				<if test="content != null">content=#{content},</if>
+     			</set> where num=#{num}
+     	</update>
+     	
+     	<select id="adminCheck" resultType="int" parameterType="String">
+     		select grade from member where id=#{id}
+     	</select>
+     	
      </mapper>
