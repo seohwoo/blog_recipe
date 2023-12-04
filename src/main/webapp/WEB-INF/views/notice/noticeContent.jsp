@@ -30,11 +30,19 @@
 			</c:forEach>
 		</tr>
 	</table>
-	<form id="noticeReply" method="post" action="/content/replyPro">
+	<form id="noticeReply" method="post" action="/notice/replyPro?num=${dto.num}">
+		
 		<table>
-			<tr><td>댓글</td></tr>
+			<tr><td>댓글 작성</td></tr>
 			<tr>
-				<td><textarea rows="10" cols="30"></textarea></td>
+				<td>제목</td>
+				<td>이름</td>
+				<td>내용</td>
+			</tr>
+			<tr>
+				<td><input type="text" name="title" vaule="공지 댓글" /></td>
+				<td><input type="text" name="writer" /></td>
+				<td><textarea name="content" rows="5" cols="30"></textarea></td>
 				<td><input type="submit" value="댓글 등록" /></td>
 			</tr>
 		</table>
@@ -44,10 +52,13 @@
 		<c:forEach var="reply" items="${reply}">
 			<tr>
 				<td>이름</td>
+				<td>내용</td>
+				<td>작성일</td>
 			</tr>
 			<tr>
-				<td>작성자 이름 들어갈 곳</td>
+				<td>${reply.writer}</td>
 				<td>${reply.content}</td>
+				<td><fmt:formatDate pattern="yyyy/MM/dd" value="${reply.reg_date}" /></td>
 			</tr>
 		</c:forEach>
 	</table>
@@ -55,7 +66,8 @@
 	<c:if test="${count == 0}">
 		<d>등록된 댓글이 없습니다.</d>
 	</c:if>
-	<%-- admin이면 삭제 기능 추가 --%>
-	<input type="button" value="글삭제" onclick="document.location.href='/notice/delete?num=${dto.num}&pageNum=${pageNum}'">
-
+<%--<c:if test="${check == 10}"> --%>	
+		<input type="button" value="글삭제" onclick="document.location.href='/notice/delete?num=${dto.num}&pageNum=${pageNum}'">
+		<input type="button" value="글수정" onclick="document.location.href='/notice/update?num=${dto.num}&pageNum=${pageNum}'">
+<%--	</c:if> --%>
 </body>
