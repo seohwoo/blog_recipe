@@ -21,7 +21,6 @@ import spring.blog.mvc.service.ImgService;
 @RequestMapping("/img/*")
 public class ImgController {
 	
-	
 	@Autowired
 	private ImgService service;
 	
@@ -97,7 +96,5 @@ public class ImgController {
 		model.addAttribute("pageNum", pageNum);
 		model.addAttribute("boardnum", boardnum);
 		return "img/likesPro";
-	}
-	
-	
+	}	
 }
