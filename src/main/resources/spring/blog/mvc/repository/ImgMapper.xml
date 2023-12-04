@@ -6,7 +6,7 @@
 	
 	<insert id="imgWirte" parameterType="spring.blog.mvc.bean.BoardDTO">
 		insert into board
-		(num, writer, title, content, reg_date, boardnum, tablenum, files) values(
+		(num, writer, title, content, reg_date, boardnum, tablenum, files, stars) values(
 			board_seq.NEXTVAL,
 			#{writer},
 			#{title},
@@ -14,7 +14,8 @@
 			sysdate,
 			#{boardnum},
 			99,
-			#{files}
+			#{files},
+			#{stars}
 		)
 	</insert>
 	
@@ -36,7 +37,7 @@
 	</select>
 	
 	<select id="listCount" resultType="int">
-		select count(*) from board where tablenum=99
+		select count(*) from board where tablenum=99 and boardnum=0
 	</select>
 	
 	<select id="showList" parameterType="hashmap" resultType="spring.blog.mvc.bean.BoardDTO">
@@ -46,6 +47,10 @@
 			(select * from board where tablenum=99 and boardnum=0 order by reg_date desc) b) 
 			where r >= #{start} and r <= #{end}
 		]]>
+	</select>
+	
+	<select id="avgStars">
+		select round(avg(stars), 1) from board where num=#{num} and tablenum=99
 	</select>
 	
 	<update id="readcountUp" parameterType="int">
@@ -76,8 +81,20 @@
 		update board set writer=#{writer}, title=#{title}, content=#{content} where num=#{num}
 	</update>
 	
+	<select id="ReplyBoardCnt" parameterType="int" resultType="int">
+		select count(*) from board where boardnum=#{num} and tablenum=99 
+	</select>
+	
 	<select id="readReplyBoard" parameterType="int" resultType="spring.blog.mvc.bean.BoardDTO">
 		select * from board where boardnum=#{num} and tablenum=99 order by reg_date desc 
 	</select>
+	
+	<update id="starsUp" parameterType="int">
+		update board set stars=stars+#{stars} where num=#{boardnum} and tablenum=99
+	</update>
+	
+	<update id="likesUp" parameterType="int">
+		update board set likes=likes+1 where num=#{num} and tablenum=99
+	</update>
 	
 </mapper>

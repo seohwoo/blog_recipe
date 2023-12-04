@@ -90,5 +90,15 @@ public class ImgController {
 		return "img/updatePro";
 	}
 	
+	@RequestMapping("likes")
+	public String likes(int num, int pageNum, Model model, @RequestParam(value="boardnum", defaultValue="0") int boardnum) {
+		int check = service.likesUp(num);
+		model.addAttribute("check", check);
+		model.addAttribute("num", num);
+		model.addAttribute("pageNum", pageNum);
+		model.addAttribute("boardnum", boardnum);
+		return "img/likesPro";
+	}
+	
 	
 }

@@ -32,17 +32,19 @@ pageEncoding="UTF-8"%>
 			<c:if test="${userCnt>0 }">
 				<table> 
 				    <tr> 
-				      <td>번 호</td> 
-				      <td>이미지</td> 
-				      <td>제   목</td> 
 				      <td>작성자</td>
+				      <td>제   목</td> 
+				      <td>이미지</td> 
+				      <td>조회수</td> 
+				      <td>별점</td> 
+				      <td>댓글수</td> 
+				      <td>좋아요</td> 
 				      <td>작성일</td> 
-				      <td>조 회</td> 
 				    </tr>
 					<c:forEach var="dto" items="${userList }">
 						   	<tr>
-							
-						    	<td>${dto.num}</td>
+							    <td>${dto.writer}</td>
+							    <td><a href="/img/content?num=${dto.num}&pageNum=${pageNum }">${dto.title}</a></td>
 							    <td>
 									<c:if test="${dto.files>0 }">
 										<img src="/resources/file/board/${imgMap.get(dto.num)}" width="100px" height="100px">
@@ -51,12 +53,13 @@ pageEncoding="UTF-8"%>
 										<img src="/resources/images/1111.jpg" width="100px" height="100px">
 									</c:if>
 							    </td>
-							    <td><a href="/img/content?num=${dto.num}&pageNum=${pageNum }">${dto.title}</a></td>
-							    <td>${dto.writer}</td>
-							    <td>
-							    	<fmt:formatDate value="${dto.reg_date}" dateStyle="short" type="date"/>
-							    </td>
 							    <td>${dto.readcount}</td>
+							    <td>${starMap.get(dto.num)}</td>
+							    <td>${cntMap.get(dto.num)}</td>
+							    <td>${dto.likes}</td>
+							    <td>
+							    	<fmt:formatDate value="${dto.reg_date}" dateStyle="long" type="both"/>
+							    </td>
 					  		</tr>
 					</c:forEach>   
 				</table>

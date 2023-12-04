@@ -27,6 +27,10 @@ public class ImgServiceImpl implements ImgService{
 	private HashMap<String, Integer> boardMap;
 	@Autowired
 	private HashMap<Integer, String> imgMap;
+	@Autowired
+	private HashMap<Integer, String> starMap;
+	@Autowired
+	private HashMap<Integer, Integer> cntMap;
 	
 	@Override
 	public int write(List<MultipartFile> filelist, BoardDTO dto, String path) {
@@ -38,6 +42,11 @@ public class ImgServiceImpl implements ImgService{
 			}
 		}
 		dto.setFiles(files);
+		logger.info("===write??===>>>>");
+		if(dto.getBoardnum() > 0) {
+			int result = mapper.starsUp(dto.getStars(), dto.getBoardnum());
+			logger.info("===result===>>>>"+result);
+		}
 		check = mapper.imgWirte(dto);
 		return check;
 	}
@@ -67,6 +76,9 @@ public class ImgServiceImpl implements ImgService{
 	@Override
 	public void showimgList(int pageNum, Model model) {
 		int pageSize = 10;
+		int replyCnt = 0;
+		double avgStars = 0;
+		String formatavgStars = "";
 		int start = (pageNum -1) * pageSize +1;
 		int end = pageNum * pageSize;
 		int cnt = mapper.listCount();
@@ -76,6 +88,15 @@ public class ImgServiceImpl implements ImgService{
 			boardMap.put("end", end);
 			userList = mapper.showList(boardMap);
 			for (BoardDTO boardDTO : userList) {
+				replyCnt = mapper.ReplyBoardCnt(boardDTO.getNum());
+				if(replyCnt >0) {
+					avgStars = (double) boardDTO.getStars() / replyCnt;
+					formatavgStars = String.format("%.1f", avgStars);
+					starMap.put(boardDTO.getNum(), formatavgStars);
+				}else {
+					starMap.put(boardDTO.getNum(), "0");
+				}
+				cntMap.put(boardDTO.getNum(), replyCnt);
 				if(mapper.fileCnt(boardDTO.getNum())>0) {
 					imgMap.put(boardDTO.getNum(),mapper.readfiles(boardDTO.getNum()).get(0));
 				}else {
@@ -85,6 +106,8 @@ public class ImgServiceImpl implements ImgService{
 		}
 		model.addAttribute("userList", userList);
 		model.addAttribute("imgMap", imgMap);
+		model.addAttribute("starMap", starMap);
+		model.addAttribute("cntMap", cntMap);
 		model.addAttribute("userCnt", cnt);
 		model.addAttribute("pageSize", pageSize);
 		model.addAttribute("pageNum", pageNum);
@@ -97,6 +120,7 @@ public class ImgServiceImpl implements ImgService{
 		if(endPage > pageCnt) {
 			endPage = pageCnt;
 		}
+		
 		model.addAttribute("pageCnt", pageCnt);
 		model.addAttribute("pageBlock", pageBlock);
 		model.addAttribute("startPage", startPage);
@@ -112,8 +136,17 @@ public class ImgServiceImpl implements ImgService{
 	public void read(int num, Model model) {
 		BoardDTO dto = mapper.readBoard(num);
 		List<String> fileList = mapper.readfiles(num);
+		int replyCnt = 0;
+		double avgStars = 0;
+		String formatavgStars = "";
+		replyCnt = mapper.ReplyBoardCnt(dto.getNum());
+		if(replyCnt > 0) {
+			avgStars = (double) dto.getStars() / replyCnt;
+			formatavgStars = String.format("%.1f", avgStars);
+		}
 		model.addAttribute("dto", dto);
 		model.addAttribute("fileList", fileList);
+		model.addAttribute("formatavgStars", formatavgStars);
 	}
 	
 	@Override
@@ -146,6 +179,13 @@ public class ImgServiceImpl implements ImgService{
 	@Override
 	public int update(BoardDTO dto) {
 		int check = mapper.updateBoard(dto);
+		return check;
+	}
+
+	@Override
+	public int likesUp(int num) {
+		int check = 0;
+		check = mapper.likesUp(num);
 		return check;
 	}
 

@@ -19,10 +19,13 @@ public interface ImgMapper {
 	public List<BoardDTO> showList(HashMap<String, Integer> map);
 	public void readcountUp(@Param("num") int num);
 	public BoardDTO readBoard(@Param("num") int num);
+	public int ReplyBoardCnt(@Param("num") int num);
 	public int fileCnt(@Param("num") int num);
 	public List<String> readfiles(@Param("num") int num);
 	public int deleteBoard(int num);
 	public int deletefiles(int boardnum);
 	public int updateBoard(BoardDTO dto);
 	public List<BoardDTO> readReplyBoard(@Param("num") int num);
+	public int starsUp(@Param("stars") int stars, @Param("boardnum") int boardnum);
+	public int likesUp(@Param("num") int num);
 }
