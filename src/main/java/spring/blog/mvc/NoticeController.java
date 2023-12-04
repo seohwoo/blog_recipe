@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
@@ -55,15 +56,19 @@ public class NoticeController {
 	}
 	
 	@RequestMapping("list")
-	public String noticeList(Model model, @RequestParam(value="pageNum",required = true , defaultValue="1" )int pageNum) {
+	public String noticeList(Model model, @RequestParam(value="pageNum",required = true , defaultValue="1" )int pageNum, HttpSession session) {
 		service.noticeList(pageNum, model);
+		if(session.getAttribute("memId") != null) {
+			String id = (String)session.getAttribute("memId");
+			int check = service.adminCheck(id);
 		
-		
+			model.addAttribute("check", check);
+			}
 		return "notice/noticeList";
 	}
 	
 	@RequestMapping("content")
-	public String noticeContent(Model model, int num, int pageNum) {
+	public String noticeContent(Model model, int num, int pageNum, HttpSession session) {
 		BoardDTO dto = service.readContent(num);
 		int boardnum=num;
 		int count = service.replyCount(num);
@@ -72,6 +77,14 @@ public class NoticeController {
 		if(dto.getFiles()>0) {
 			filelist = service.readFiles(boardnum);
 		}
+		if(session.getAttribute("memId") != null) {
+			String id = (String)session.getAttribute("memId");
+			int check = service.adminCheck(id);
+			model.addAttribute("id", id);
+		
+			model.addAttribute("check", check);
+			}
+		
 		model.addAttribute("count", count);
 		model.addAttribute("filelist", filelist);
 		model.addAttribute("pageNum", pageNum);
@@ -90,13 +103,25 @@ public class NoticeController {
 	}
 	
 	@RequestMapping("update")
-	public String noticeUpdate() {
-		
+	public String noticeUpdate(Model model, int num, int pageNum) {
+		BoardDTO dto = service.readContent(num);
+		model.addAttribute("dto", dto);
+		model.addAttribute("num", num);
+		model.addAttribute("pageNum", pageNum);
 		return "notice/noticeUpdate";
 	}
 	@RequestMapping("updatePro")
-	public String noticeUpdatePro() {
-		
+	public String noticeUpdatePro(Model model, BoardDTO dto, int pageNum) {
+		service.updateNotice(dto);
+		model.addAttribute("pageNum", pageNum);
 		return "redirect:/notice/list";
+	}
+	
+	@RequestMapping("replyPro")
+	public String reply(BoardDTO dto, int num, int pageNum, Model model) {
+		service.writeReply(dto);
+		model.addAttribute("num", num);
+		model.addAttribute("pageNum", pageNum);
+		return "notice/replyPro";
 	}
 }

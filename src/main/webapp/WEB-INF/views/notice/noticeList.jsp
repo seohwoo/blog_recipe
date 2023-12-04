@@ -10,14 +10,14 @@
 <body>
 <center>
 
+<c:if test="${check==10}">
 	<table>
 		<tr>
-		
 			<td align="right"><a href="/notice/form">글쓰기</a></td>
 		</tr>
 	</table>
 	<br />
-	
+</c:if>
 	<c:if test="${count == 0}">
 	<table>
 		<tr>
@@ -25,7 +25,7 @@
 		</tr>
 	</table>
 	</c:if>
-	<c:if test="${count > 0}">
+	<c:if test="${count > 0 }">
 	<table>
 		<tr>
 		 <td>번호</td>
@@ -35,13 +35,15 @@
 		 <td>조회수</td>
 		</tr>
 		<c:forEach var="notice" items="#{list}">
+		<c:forEach var="i" step="1" begin="1" end="${listNum}">
 			<tr>
-				<td>${notice.num}</td>
+				<td>${i}</td>
 		 		<td><a href="/notice/content?num=${notice.num}&pageNum=${pageNum}">${notice.title}</a></td>
 				<td>${notice.writer}</td>
 				<td><fmt:formatDate pattern="yyyy/MM/dd" value="${notice.reg_date}" /></td>
 		 		<td>${notice.readcount}</td>
 			</tr>
+		</c:forEach>
 		</c:forEach>
 	</table>
 	</c:if>
@@ -53,5 +55,6 @@
 			</c:forEach>
 		<c:if test="${endPage < pageCount}"><a href="/free/list?pageNum=${startPage+10}">[다음]</a></c:if>
 	</c:if>
+	
 </center>
 </body>

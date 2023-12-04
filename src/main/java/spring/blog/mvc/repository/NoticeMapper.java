@@ -14,6 +14,7 @@ public interface NoticeMapper {
 	public void writeNotice(BoardDTO dto);
 	public int fileUpload(@Param("boardnum")int boardnum, @Param("filename")String filename);
 	public List<BoardDTO> noticeList(HashMap map);
+	public int noticeListCount(HashMap map);
 	public void readCountUp(int num);
 	public BoardDTO readContent(int num);
 	public List<FilesDTO> readFiles(int boardnum);
@@ -23,4 +24,6 @@ public interface NoticeMapper {
 	public int deleteContent(int num);
 	public int deleteReply(int boardnum);
 	public int deleteFiles(int boardnum);
+	public int updateNotice(BoardDTO dto);
+	public int adminCheck(String id);
 }
