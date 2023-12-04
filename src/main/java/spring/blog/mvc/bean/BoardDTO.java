@@ -15,4 +15,6 @@ public class BoardDTO {
 	private int boardnum;
 	private int files;
 	private int tablenum;
+	private int stars;
+	private int likes;
 }
