@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="spring.blog.mvc.repository.ImgMapper">
+	
+	<insert id="imgWirte" parameterType="spring.blog.mvc.bean.BoardDTO">
+		insert into board
+		(num, writer, title, content, reg_date, boardnum, tablenum, files, stars) values(
+			board_seq.NEXTVAL,
+			#{writer},
+			#{title},
+			#{content},
+			sysdate,
+			#{boardnum},
+			99,
+			#{files},
+			#{stars}
+		)
+	</insert>
+	
+	<select id="maxNum" resultType="int">
+		select NVL(max(num), 0) from board where tablenum=99
+	</select>
+	
+	<insert id="imgFileInsert">
+		insert into files values(
+			board_file_seq.NEXTVAL,
+			#{boardnum},
+			#{filename},
+			99
+		)
+	</insert>
+	
+	<select id="selectNum" parameterType="int" resultType="int">
+		select num from board where tablenum=99 and boardnum=#{boardnum}
+	</select>
+	
+	<select id="listCount" resultType="int">
+		select count(*) from board where tablenum=99 and boardnum=0
+	</select>
+	
+	<select id="showList" parameterType="hashmap" resultType="spring.blog.mvc.bean.BoardDTO">
+		<![CDATA[
+			select * from 
+			(select b.*, rownum r from 
+			(select * from board where tablenum=99 and boardnum=0 order by reg_date desc) b) 
+			where r >= #{start} and r <= #{end}
+		]]>
+	</select>
+	
+	<select id="avgStars">
+		select round(avg(stars), 1) from board where num=#{num} and tablenum=99
+	</select>
+	
+	<update id="readcountUp" parameterType="int">
+		update board set readcount=readcount+1 where num=#{num} and tablenum=99
+	</update>
+	
+	<select id="readBoard" parameterType="int" resultType="spring.blog.mvc.bean.BoardDTO">
+		select * from board where num = #{num} and tablenum=99
+	</select>
+	
+	<select id="fileCnt" parameterType="int" resultType="int">
+		select count(*) from files where boardnum=#{num} and tablenum=99
+	</select>
+	
+	<select id="readfiles" parameterType="int" resultType="String">
+		select filename from files where boardnum=#{num} and tablenum=99
+	</select>
+	
+	<delete id="deleteBoard" parameterType="int">
+		delete from board where num=#{num}
+	</delete>
+
+	<delete id="deletefiles" parameterType="int">
+		delete from files where boardnum=#{boardnum}
+	</delete>
+	
+	<update id="updateBoard" parameterType="spring.blog.mvc.bean.BoardDTO">
+		update board set writer=#{writer}, title=#{title}, content=#{content} where num=#{num}
+	</update>
+	
+	<select id="ReplyBoardCnt" parameterType="int" resultType="int">
+		select count(*) from board where boardnum=#{num} and tablenum=99 
+	</select>
+	
+	<select id="readReplyBoard" parameterType="int" resultType="spring.blog.mvc.bean.BoardDTO">
+		select * from board where boardnum=#{num} and tablenum=99 order by reg_date desc 
+	</select>
+	
+	<update id="starsUp" parameterType="int">
+		update board set stars=stars+#{stars} where num=#{boardnum} and tablenum=99
+	</update>
+	
+	<update id="likesUp" parameterType="int">
+		update board set likes=likes+1 where num=#{num} and tablenum=99
+	</update>
+	
+</mapper>
