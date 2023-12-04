@@ -53,11 +53,11 @@ public class QnAController {
 		
 		//글 내용 보기 
 		@RequestMapping("qnaView")
-		public String qnaView(Model model, int num, int pageNum,int boardnum) {
+		public String qnaView(Model model, int num, int pageNum) {
 			BoardDTO article = service.readContent(num);
 			List<FilesDTO> fileList = null;
 			if(article.getFiles()>0) {
-				fileList = service.fileList(boardnum);
+				fileList = service.fileList(num);
 			}
 			model.addAttribute("article",article);
 			model.addAttribute("fileList",fileList);
@@ -70,5 +70,28 @@ public class QnAController {
 		public String qnaList(Model model, @RequestParam(value="pageNum", defaultValue="1") int pageNum) {
 			service.list(pageNum, model);
 			return "qna/qnaList";
+		}
+		
+		//글 삭제 
+		@RequestMapping("qnaDeleteForm")
+		public String qnaDeleteForm (Model model, int num, int pageNum) {
+			
+			model.addAttribute("num",num);
+			model.addAttribute("pageNum",pageNum);
+			
+			return "qna/qnaDeleteForm";
+		
+		}
+		@RequestMapping("qnaDeletePro")
+		public String qnaDeletePro(HttpServletRequest request, Model model, int num,int pageNum) {
+	
+			String filePath = request.getServletContext().getRealPath("/resources/file/qna/");
+			
+			int check = service.deleteNum(num, filePath);
+			
+			model.addAttribute("check",check);
+			model.addAttribute("pageNum",pageNum);
+			
+			return "redirect:/blog/qnaList";
 		}
 }

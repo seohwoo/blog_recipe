@@ -19,4 +19,6 @@ public interface QnAService {
 	
 	public List<FilesDTO> fileList(int boardnum); //게시글 넘버 가져와 사진 리스트 
 	public int fileInsert(List<MultipartFile> file,String path); //파일 인서트하기 
+	
+	public int deleteNum (int num, String path); // 글 삭제하기 
 }

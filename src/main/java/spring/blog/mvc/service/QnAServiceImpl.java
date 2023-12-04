@@ -59,8 +59,7 @@ public class QnAServiceImpl implements QnAService {
 	    model.addAttribute("count",count);
 	    model.addAttribute("pageNum",pageNum);
 	    model.addAttribute("pageSize",pageSize);
-	  
-	    //page
+
 	    int pageCount = count / pageSize + ( count % pageSize == 0 ? 0 : 1);
 		 
         int startPage = (int)(pageNum/10)*10+1;
@@ -102,9 +101,26 @@ public class QnAServiceImpl implements QnAService {
 					e.printStackTrace();
 				} 
 			}
-		}
+		} 
 		return result;
 	
+	}
+	//글과 사진 삭제 
+	@Override
+	public int deleteNum(int num, String path) {
+		int result = 0;
+		List<FilesDTO> fileList = mapper.fileList(num);
+		if(fileList != null) {
+			for(FilesDTO filesDTO : fileList) {
+				File f = new File(path+filesDTO.getFilename());
+				if(f.isFile()) {
+					f.delete();
+				}
+			mapper.deleteFile(num);
+			result = mapper.deleteNum(num);
+			}
+		}
+		return result;
 	}
 
 }

@@ -34,7 +34,7 @@
 						<td align="center" width="125" >첨부파일</td>
 						<td align="center" width="375" align="center" colspan="3">
 						<c:forEach var="filesDTO" items="${fileList}">
-						 	<img src="/resources/file/qna/${filesDTO.filename}" border="0"  height="16">   
+						 	<img src="/resources/file/qna/${filesDTO.filename}" border="0"  height="200">   
 						</c:forEach>
 						</td>
 					</tr>

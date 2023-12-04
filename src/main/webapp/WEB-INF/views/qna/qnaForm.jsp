@@ -43,6 +43,10 @@
 					       <input type="text" size="40" maxlength="50" name="title">
 					</td>
 				</tr>
+					<!-- 관리자이면 제목 입력칸에 답변 표시   
+					<if test="${num != 0}">
+						   <input type="text" size="40" maxlength="50" name="subject" value="[답변]">
+					-->
 				<tr>
 					<td  width="70"  align="center">작성자</td>
 					<td  width="330">
@@ -53,7 +57,7 @@
 		  			<tr>
 						<td  width="70"  align="center"> 파 일</td>
 						<td  width="330" id="files">
-							<input type="file" size="40" maxlength="30" name="files"  multiple="multiple"/>
+							<input type="file" size="40" maxlength="30" name="fileList"  multiple="multiple"/>
 						</td>
 		  			</tr>
 				<tr>

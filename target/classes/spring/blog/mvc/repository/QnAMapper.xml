@@ -33,8 +33,6 @@
 	<select id="count" resultType="int">
 		select count(*) from board where tablenum=77 
 	</select>
-	
-	
 	<insert id="fileInsert" parameterType="spring.blog.mvc.bean.FilesDTO">
 		insert into files values(
 			board_file_seq.nextval,
@@ -46,5 +44,22 @@
 	<select id="fileList" resultType="spring.blog.mvc.bean.FilesDTO">
 		select * from files where boardnum=#{boardnum} and tablenum=77
 	</select>
+
+	<select id="list" resultType="spring.blog.mvc.bean.BoardDTO" parameterType="hashmap">
+	<![CDATA[
+		select * from 	
+			(select b.* , rownum r from 
+				(select * from board where tablenum=77 order by reg_date desc) b) 
+					where r >= #{start} and r <= #{end} 
+	]]>	
+	</select>
+	
+	<delete id="deleteNum">
+		delete from board where num=#{num}
+	</delete>
+	<delete id="deleFile">
+		delete from files where boardnum=#{boardnum}
+	</delete>
+	
 
 </mapper>

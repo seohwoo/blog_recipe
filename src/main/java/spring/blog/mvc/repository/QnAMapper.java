@@ -22,4 +22,7 @@ public interface QnAMapper {
 	
 	public List<BoardDTO> list (HashMap map); //페이징 사용
 	
+	public int deleteNum(int num); //글 삭제
+	public int deleteFile(int freeboardnum); //파일 삭제 
+	
 }

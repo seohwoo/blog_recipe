@@ -47,7 +47,6 @@
 						<td align="center"  width="100" >작성자</td>
 						<td align="center"  width="150" >작성일</td> 
 						<td align="center"  width="50" >조 회</td> 
-						<td align="center"  width="100" >IP</td>   
 				    </tr> 
 				    <c:forEach var="article" items="${list}">
 					    <tr height="30">
@@ -56,16 +55,15 @@
 					    	<!--  관리자면 앞에 답글 이미지 
 					    	<test="${sessionScope.grade == 10}">
 					    		 <img src="/resources/file/qna/heart.gif" border="0"  height="16">
-							
 							-->
-								<a href="content?num=${article.num}&pageNum=${pageNum}">
+								<a href="qnaView?num=${article.num}&pageNum=${pageNum}">
 						           ${article.title}
 								</a> 
 								<c:if test="${article.files > 0}">
 									<img src="/resources/file/qna/chumboo.png" border="0"  height="16">
 								</c:if>
 							</td>
-						    <td align="center"  width="100"> 
+						    <td align="center"  width="100"> ${article.writer}</td>
 						    <td align="center"  width="150"><fmt:formatDate value="${article.reg_date}" type="date" dateStyle="short" /></td>
 						    <td align="center"  width="50">${article.readcount}</td>
 						</tr>
