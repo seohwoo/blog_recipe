@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="spring.blog.mvc.repository.GuestBookMapper">
+	<insert id="guestBookInsert" parameterType="spring.blog.mvc.bean.BoardDTO">
+		insert into board (num, writer, title, content, reg_date, readcount, boardnum, files, tablenum)
+		values(board_seq.NEXTVAL, #{writer}, #{title}, #{content}, sysdate, #{readcount}, 
+		#{boardnum}, #{files}, #{tablenum} )
+	</insert>
+	
+	<!--  
+	<select id="guestBookList" resultType="spring.blog.mvc.bean.BoardDTO">
+		select * from board where tablenum=30 order by reg_date desc
+	</select>
+	-->
+	<select id="guestBookList" parameterType="hashmap" resultType="spring.blog.mvc.bean.BoardDTO">
+		<![CDATA[
+			select * from 
+			(select b.*, rownum r from 
+			(select * from board where tablenum=30 order by reg_date desc) b) 
+			where r >= #{start} and r <= #{end}
+		]]>
+	</select>
+	
+	<select id="BoardCount" resultType="int">
+		select count(*) from board where tablenum=30
+	</select>
+	
+	<select id="myBoardList" resultType="spring.blog.mvc.bean.BoardDTO" parameterType="String">
+		select * from board where writer=#{writer}
+	</select>
+</mapper>
