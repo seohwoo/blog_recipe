@@ -5,6 +5,30 @@
 <mapper namespace="spring.blog.mvc.repository.MemberMapper">
 	<insert id="MemberInsert" parameterType="spring.blog.mvc.bean.MemberDTO">
 		insert into member (num, id, pw, nic, name, birth, 
-		gender, phone, address, email, grade. image, reg_date)
+		gender, phone, address, email, reg_date) values(member_seq.NEXTVAL, 
+		#{id}, #{pw}, #{nic}, #{name}, #{birth}, #{gender}, #{phone}, 
+		#{address}, #{email}, sysdate) 		
 	</insert>
+	
+	<select id="confirmId" resultType="spring.blog.mvc.bean.MemberDTO" parameterType="String">
+		select * from member where id=#{id}
+	</select>
+	
+	<select id="MemberLogin" resultType="int" parameterType="spring.blog.mvc.bean.MemberDTO">
+		select count(*) from member where id=#{id} and pw=#{pw} and grade > 0
+	</select>
+	
+	<select	id="member" resultType="spring.blog.mvc.bean.MemberDTO" parameterType="String">
+		select * from member where id=#{id}
+	</select>
+	
+	<select id="idCheck" resultType="int" parameterType="String">
+		select count(*) from member where id=#{id}
+	</select>
+	
+	<!-- TEST -->
+	<update id="imageChange" parameterType="String">
+		update member set image=#{image} where id=#{id}
+	</update>
+	
 </mapper>
