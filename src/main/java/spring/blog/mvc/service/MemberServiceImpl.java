@@ -13,8 +13,29 @@ public class MemberServiceImpl implements MemberService {
 	
 	@Override
 	public void MemberInsert(MemberDTO dto) {
-		// TODO Auto-generated method stub
-		
+		mapper.MemberInsert(dto);
 	}
+
+	@Override
+	public MemberDTO confirmId(String id) {
+		return mapper.confirmId(id);
+	}
+	
+	@Override
+	public int MemberLogin(MemberDTO dto) {
+		return mapper.MemberLogin(dto);
+	}
+
+	@Override
+	public MemberDTO member(String id) {
+		return mapper.member(id);
+	}
+
+	@Override
+	public int idCheck(String id) {
+		return mapper.idCheck(id);
+	}
+
+	
 
 }
