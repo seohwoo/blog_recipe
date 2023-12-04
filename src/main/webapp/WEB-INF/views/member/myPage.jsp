@@ -12,7 +12,18 @@
 
 	<body>
 		<center>
+		<h3>${dto.nic}님 페이지</h3>
 		<img src="/resources/file/user/${dto.image}" width="200px" height="200px"/> <br />
+			
+			<c:if test="${sessionScope.memId == dto.id}">
+			
+			<form action="/member/uploadPro" method="post" enctype="multipart/form-data">
+				<input type="file" name="image"/>
+				<input type="submit" value="변경하기" />
+			</form>
+			
+			<br />
+			
 			<table border="1px" style="text-align: center;">
 				<tr>
 					<td>아이디</td>
@@ -38,10 +49,12 @@
 					<td>${dto.grade}
 					<td><fmt:formatDate value="${dto.reg_date}" dateStyle="short" type="date"/></td>
 				</tr>
+				</c:if>
 			</table>
 			<p>	
 				<a href="/member/main">메인</a>
 			</p>
+			
 			
 			<table border="1" width="400">
 			<c:forEach var="board" items="${boardList }">

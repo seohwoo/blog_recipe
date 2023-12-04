@@ -1,5 +1,7 @@
 package spring.blog.mvc.repository;
 
+import org.apache.ibatis.annotations.Param;
+
 import spring.blog.mvc.bean.MemberDTO;
 
 public interface MemberMapper {
@@ -12,4 +14,8 @@ public interface MemberMapper {
 	public MemberDTO member(String id);
 	
 	public int idCheck(String id);
+	
+	// TEST
+	public void imageChange(@Param("image") String image,
+							@Param("id") String id);
 }

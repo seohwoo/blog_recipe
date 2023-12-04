@@ -26,4 +26,9 @@
 		select count(*) from member where id=#{id}
 	</select>
 	
+	<!-- TEST -->
+	<update id="imageChange" parameterType="String">
+		update member set image=#{image} where id=#{id}
+	</update>
+	
 </mapper>

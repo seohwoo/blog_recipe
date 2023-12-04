@@ -2,12 +2,14 @@ package spring.blog.mvc;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 import spring.blog.mvc.bean.BoardDTO;
 import spring.blog.mvc.bean.MemberDTO;
@@ -78,7 +80,7 @@ public class MemberController {
 	
 	 
 	@RequestMapping("myPage")
-	public String myPage(Model model, String id) {
+	public String myPage(Model model, String id, HttpSession session) {
 		MemberDTO dto = service.member(id);
 		model.addAttribute("dto", dto);
 		
@@ -89,7 +91,15 @@ public class MemberController {
 		return "member/myPage";
 	}
 	
-	
+	// TEST
+	@RequestMapping("uploadPro")
+	public String uploadPro(Model model, HttpSession session, HttpServletRequest request, MultipartFile image) {
+		String id = (String) session.getAttribute("memId");
+		String path = request.getServletContext().getRealPath("/resources/file/user/");
+		boolean result = service.imageChange(id, path, image);
+		model.addAttribute("result", result);
+		return "member/uploadPro";
+	}
 	
 	
 	
