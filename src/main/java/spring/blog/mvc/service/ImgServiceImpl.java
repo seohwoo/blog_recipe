@@ -42,10 +42,8 @@ public class ImgServiceImpl implements ImgService{
 			}
 		}
 		dto.setFiles(files);
-		logger.info("===write??===>>>>");
 		if(dto.getBoardnum() > 0) {
 			int result = mapper.starsUp(dto.getStars(), dto.getBoardnum());
-			logger.info("===result===>>>>"+result);
 		}
 		check = mapper.imgWirte(dto);
 		return check;
@@ -138,7 +136,7 @@ public class ImgServiceImpl implements ImgService{
 		List<String> fileList = mapper.readfiles(num);
 		int replyCnt = 0;
 		double avgStars = 0;
-		String formatavgStars = "";
+		String formatavgStars = "0";
 		replyCnt = mapper.ReplyBoardCnt(dto.getNum());
 		if(replyCnt > 0) {
 			avgStars = (double) dto.getStars() / replyCnt;
@@ -172,6 +170,7 @@ public class ImgServiceImpl implements ImgService{
 				}
 			}
 			mapper.deletefiles(num);
+			mapper.deleteSubBoard(num);
 		}
 		return check;
 	}

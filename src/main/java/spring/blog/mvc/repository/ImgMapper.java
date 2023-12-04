@@ -23,6 +23,7 @@ public interface ImgMapper {
 	public int fileCnt(@Param("num") int num);
 	public List<String> readfiles(@Param("num") int num);
 	public int deleteBoard(int num);
+	public int deleteSubBoard(int num);
 	public int deletefiles(int boardnum);
 	public int updateBoard(BoardDTO dto);
 	public List<BoardDTO> readReplyBoard(@Param("num") int num);

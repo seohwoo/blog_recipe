@@ -1,6 +1,5 @@
 package spring.blog.mvc;
 
-import java.io.File;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
