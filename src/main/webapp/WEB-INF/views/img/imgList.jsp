@@ -45,10 +45,10 @@ pageEncoding="UTF-8"%>
 						    	<td>${dto.num}</td>
 							    <td>
 									<c:if test="${dto.files>0 }">
-										<img src="/resources/file/board/${imgMap.get(dto.num).filename}" width="100px" height="100px">
+										<img src="/resources/file/board/${imgMap.get(dto.num)}" width="100px" height="100px">
 									</c:if>
 									<c:if test="${dto.files==0 }">
-										<img src="/resources/images/1111.jpg" border="0"  height="16" style="margin-top: 5px;">
+										<img src="/resources/images/1111.jpg" width="100px" height="100px">
 									</c:if>
 							    </td>
 							    <td><a href="/img/content?num=${dto.num}&pageNum=${pageNum }">${dto.title}</a></td>

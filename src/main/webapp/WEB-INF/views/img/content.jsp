@@ -35,8 +35,8 @@ pageEncoding="UTF-8"%>
 				  	<tr>
 				    	<td>첨부파일</td>
 				    	<td>
-				    		<c:forEach var="file" items="${fileList }">
-				    			<img src="/resources/file/board/${file.filename}" width="100px" height="100px"/>
+				    		<c:forEach var="filename" items="${fileList }">
+				    			<img src="/resources/file/board/${filename}" width="100px" height="100px"/>
 				    		</c:forEach>
 				    	</td>
 				  	</tr>

@@ -26,7 +26,7 @@ public class ImgServiceImpl implements ImgService{
 	@Autowired
 	private HashMap<String, Integer> boardMap;
 	@Autowired
-	private HashMap<Integer, FilesDTO> imgMap;
+	private HashMap<Integer, String> imgMap;
 	
 	@Override
 	public int write(List<MultipartFile> filelist, BoardDTO dto, String path) {
@@ -76,7 +76,11 @@ public class ImgServiceImpl implements ImgService{
 			boardMap.put("end", end);
 			userList = mapper.showList(boardMap);
 			for (BoardDTO boardDTO : userList) {
-				imgMap.put(boardDTO.getNum(),mapper.readfiles(boardDTO.getNum()).get(0));
+				if(mapper.fileCnt(boardDTO.getNum())>0) {
+					imgMap.put(boardDTO.getNum(),mapper.readfiles(boardDTO.getNum()).get(0));
+				}else {
+					imgMap.put(boardDTO.getNum(), "1111.jpg");
+				}
 			}
 		}
 		model.addAttribute("userList", userList);
@@ -107,7 +111,7 @@ public class ImgServiceImpl implements ImgService{
 	@Override
 	public void read(int num, Model model) {
 		BoardDTO dto = mapper.readBoard(num);
-		List<FilesDTO> fileList = mapper.readfiles(num);
+		List<String> fileList = mapper.readfiles(num);
 		model.addAttribute("dto", dto);
 		model.addAttribute("fileList", fileList);
 	}
@@ -127,9 +131,9 @@ public class ImgServiceImpl implements ImgService{
 	public int delete(int num, String path) {
 		int check = mapper.deleteBoard(num);
 		if(check==1) {
-			List<FilesDTO> fileList = mapper.readfiles(num);
-			for (FilesDTO dto : fileList) {
-				File file = new File(path+dto.getFilename());
+			List<String> fileList = mapper.readfiles(num);
+			for (String filename : fileList) {
+				File file = new File(path+filename);
 				if(file.isFile()) {
 					file.delete();
 				}
