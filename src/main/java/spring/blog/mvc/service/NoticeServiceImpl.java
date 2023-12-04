@@ -23,11 +23,7 @@ public class NoticeServiceImpl implements NoticeService {
 	@Autowired
 	private NoticeMapper mapper;
 	
-	@Override
-		public int noticeListCount() {
-		
-		return mapper.noticeListCount();
-		}
+	
 	@Override
 	public void writeNotice(BoardDTO dto) {
 		

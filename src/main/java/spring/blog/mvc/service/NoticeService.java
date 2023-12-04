@@ -11,7 +11,7 @@ import spring.blog.mvc.bean.BoardDTO;
 import spring.blog.mvc.bean.FilesDTO;
 
 public interface NoticeService {
-	public int noticeListCount ();
+	
 	public void writeNotice(BoardDTO dto);
 	public int fileUpload(List<MultipartFile> filelist, String path);
 	public void noticeList(int pageNum, Model model);
