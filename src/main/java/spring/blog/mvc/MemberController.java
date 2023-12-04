@@ -1,5 +1,7 @@
 package spring.blog.mvc;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,7 +9,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import spring.blog.mvc.bean.BoardDTO;
 import spring.blog.mvc.bean.MemberDTO;
+import spring.blog.mvc.service.GuestBookService;
 import spring.blog.mvc.service.MemberService;
 
 @Controller
@@ -16,6 +20,9 @@ public class MemberController {
 	
 	@Autowired
 	private MemberService service;
+	
+	@Autowired
+	private GuestBookService GuestBookService;
 	
 	// 회원가입 홈페이지
 	@RequestMapping("inputForm")
@@ -63,16 +70,22 @@ public class MemberController {
 	
 	
 	@RequestMapping("main")
-	public String Main() {
+	public String Main(HttpSession session, Model model) {
+		String id = (String) session.getAttribute("memId");
+		model.addAttribute("id", id);
 		return "member/main";
 	}
 	
 	 
 	@RequestMapping("myPage")
-	public String myPage(HttpSession session, Model model) {
-		String id = (String) session.getAttribute("memId");
+	public String myPage(Model model, String id) {
 		MemberDTO dto = service.member(id);
 		model.addAttribute("dto", dto);
+		
+		List<BoardDTO> boardList = GuestBookService.myBoardList(id);
+		model.addAttribute("boardList", boardList);
+		
+		
 		return "member/myPage";
 	}
 	

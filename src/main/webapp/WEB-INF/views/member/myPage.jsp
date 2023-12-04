@@ -27,7 +27,7 @@
 					<td>가입일</td>
 				</tr>
 				<tr>
-					<td>${sessionScope.memId}
+					<td>${dto.id}
 					<td>${dto.nic}
 					<td>${dto.name}
 					<td>${dto.birth}
@@ -42,6 +42,14 @@
 			<p>	
 				<a href="/member/main">메인</a>
 			</p>
+			
+			<table border="1" width="400">
+			<c:forEach var="board" items="${boardList }">
+				<td>[${board.writer}] : ${board.content}
+				<td><fmt:formatDate value="${board.reg_date}" dateStyle="short" type="date"/>
+				<tr>
+			</c:forEach>
+			</table>
 		</center>
 	</body>
 </html>

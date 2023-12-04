@@ -24,8 +24,10 @@
 	</select>
 	
 	<select id="BoardCount" resultType="int">
-		select count(*) from board
+		select count(*) from board where tablenum=30
 	</select>
 	
-	
+	<select id="myBoardList" resultType="spring.blog.mvc.bean.BoardDTO" parameterType="String">
+		select * from board where writer=#{writer}
+	</select>
 </mapper>

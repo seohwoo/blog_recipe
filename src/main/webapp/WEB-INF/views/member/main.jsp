@@ -46,7 +46,7 @@
           			<td rowspan="3" align="center">${sessionScope.memId} 님이 <br> 방문하셨습니다
              			<form method="post" action="/member/logout">  
              				<input type="submit"  value="로그아웃">
-             				<input type="button" value="내정보" onclick="javascript:window.location='/member/myPage'">
+             				<input type="button" value="내정보" onclick="javascript:window.location='/member/myPage?id=${id}'">
             	 			<input type="button" value="방명록" onclick="javascript:window.location='/guestbook/guestBookForm'">
             	 		</form>
 					</td>

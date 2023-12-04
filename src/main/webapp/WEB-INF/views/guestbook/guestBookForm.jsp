@@ -6,7 +6,6 @@
 <html>
 	<head>
 		<title>게시판</title>
-		<link rel="stylesheet" href="https://unpkg.com/mvp.css">
 	</head>
 	
 	<body>
@@ -33,7 +32,9 @@
 				      
 				<c:forEach var="article" items="${userList }">
 				   <tr height="70">
-					<td>[${article.writer }] : ${article.content } <br />
+					<td>
+					
+					<a href="/member/myPage?id=${article.writer}">[${article.writer }]</a> : ${article.content } <br />
 					<fmt:formatDate value="${article.reg_date}" dateStyle="short" type="date" /></td>
 				</tr>
 				 </c:forEach>   
@@ -60,7 +61,7 @@
 				  	</td>
 				</tr>
 				
-				<input type="hidden" name="title" value="타이틀">
+				<input type="hidden" name="title" value="방명록">
 				<input type="hidden" name="tablenum" value="30">
 				<input type="hidden" name="writer" value="${member.nic}">
 				

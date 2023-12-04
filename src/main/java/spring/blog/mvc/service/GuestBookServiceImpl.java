@@ -68,4 +68,13 @@ public class GuestBookServiceImpl implements GuestBookService {
 	public int BoardCount() {
 		return mapper.BoardCount();
 	}
+	
+	
+	@Override
+	public List<BoardDTO> myBoardList(String id) {
+		return mapper.myBoardList(id);
+	}
+	
+
+	
 }

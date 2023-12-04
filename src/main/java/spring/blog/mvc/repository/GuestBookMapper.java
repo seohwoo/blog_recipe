@@ -14,4 +14,6 @@ public interface GuestBookMapper {
 	public List<BoardDTO> guestBookList(HashMap<String, Integer> map);
 
 	public int BoardCount();
+	
+	public List<BoardDTO> myBoardList(String id);
 }

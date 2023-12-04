@@ -15,4 +15,6 @@ public interface GuestBookService {
 	public void guestBookList(int pageNum, Model model);
 	
 	public int BoardCount();
+	
+	public List<BoardDTO> myBoardList(String id);
 }

@@ -42,6 +42,7 @@ public class GuestBookController {
 		MemberDTO member = memberservice.member(id);
 		model.addAttribute("member", member);
 		
+		
 		return "guestbook/guestBookForm";
 	}
 	
@@ -50,4 +51,14 @@ public class GuestBookController {
 		GuestBookService.guestBookInsert(dto);
 		return "redirect:/guestbook/guestBookForm";
 	}
+	
+	@RequestMapping("content")
+	public String content(Model model, String id) {
+		List<BoardDTO> boardList = GuestBookService.myBoardList(id);
+		model.addAttribute("boardList", boardList);
+		
+		return "guestbook/content";
+	}
+	
+	
 }
