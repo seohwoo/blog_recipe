@@ -28,6 +28,6 @@
 	</select>
 	
 	<select id="myBoardList" resultType="spring.blog.mvc.bean.BoardDTO" parameterType="String">
-		select * from board where writer=#{writer}
+		select * from board where writer=#{writer} order by reg_date desc
 	</select>
 </mapper>
