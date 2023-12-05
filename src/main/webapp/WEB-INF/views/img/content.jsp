@@ -29,8 +29,8 @@ pageEncoding="UTF-8"%>
           <div class = "img-select">
           	<c:forEach var="i" items="${arFile }" >
 	            <div class = "img-item">
-	              <a href = "#" data-id = "${arFile[i] }">
-	                <img src = "/resources/file/board/${fileList.get(i-1)}" alt = "shoe image">
+	              <a href = "#" data-id = "${arFile[i]+1 }">
+	                <img src = "/resources/file/board/${fileList.get(i)}" alt = "shoe image">
 	              </a>
 	            </div>
             </c:forEach>
@@ -53,7 +53,7 @@ pageEncoding="UTF-8"%>
 							<i class="far fa-star" style="color: #ffc83d;"></i>
 						</c:if>
 					</c:forEach>
-					<span>${avgStars}(${replyCnt}) 🔎 (${dto.readcount})</span>
+					<span>${avgStars} (${replyCnt}) 🔎 (${dto.readcount})</span>
 				</small>
 			</p>
           </div>
@@ -106,7 +106,7 @@ pageEncoding="UTF-8"%>
 									<i class="far fa-star" style="color: #ffc83d;"></i>
 								</c:if>
 							</c:forEach>
-							<span>(${replyDTO.stars}) 🔎 (${replyDTO.readcount}) 👍(${replyDTO.likes})</span><br />
+							<span>(${replyDTO.stars}) 👍 (${replyDTO.likes})</span><br />
 							<span><fmt:formatDate value="${replyDTO.reg_date}" dateStyle="short" type="date"/></span>
 						</small>
 					</p>
@@ -120,7 +120,7 @@ pageEncoding="UTF-8"%>
           <hr />
           <br />
           <div class = "social-links">
-            <p>Blog & Recipes </p>
+            <p>&copy; Blog & Recipes </p>
           </div>
         </div>
       </div>

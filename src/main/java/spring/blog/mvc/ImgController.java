@@ -49,7 +49,7 @@ public class ImgController {
 	}
 	
 	@RequestMapping("content")
-	public String content(int num, int pageNum, Model model) {
+	public String content(int num, @RequestParam(value="pageNum", defaultValue="1")int pageNum, Model model) {
 		model.addAttribute("pageNum", pageNum);
 		service.readcountUp(num);
 		service.read(num, model);
@@ -96,5 +96,11 @@ public class ImgController {
 		model.addAttribute("pageNum", pageNum);
 		model.addAttribute("boardnum", boardnum);
 		return "img/likesPro";
+	}
+	
+	@RequestMapping("search")
+	public String search(String search, Model model) {
+		service.search(search, model);
+		return "img/search";
 	}	
 }

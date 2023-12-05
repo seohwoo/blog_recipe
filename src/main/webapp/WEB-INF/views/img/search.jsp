@@ -20,21 +20,19 @@ pageEncoding="UTF-8"%>
       		<div class = "container">
         		<div class = "title">
         			<br /><br />
-          			<h2>Blog List</h2>
-          			<p>recent & best recipes on the blog</p>
-          			<p>
-          				<a href="/img/write?pageNum=${pageNum}">💌 Create Blog 💌</a>
-          			</p>
+          			<h2>Search List</h2>
+          			<p>Search Value : ${search}</p>
+          			<p>Search Value Count : ${result}</p>
         		</div>
 		        <div class = "design-content">
-		        	<c:if test="${userCnt <= 0 }">
+		        	<c:if test="${result <= 0 }">
 		        		<p>There are no saved articles in the blog</p>
 		        	</c:if>
-		        	<c:if test="${userCnt > 0 }">
-		        		<c:forEach var="dto" items="${userList }">
+		        	<c:if test="${result > 0 }">
+		        		<c:forEach var="dto" items="${searchList }">
 				          <!-- item -->
 				          <div class = "design-item">
-				          	<a href="/img/content?num=${dto.num}&pageNum=${pageNum }">
+				          	<a href="/img/content?num=${dto.num}">
 				            	<div class = "design-img">
 				              		<span><i class = "far fa-heart"></i> ${dto.likes }</span>
 				              			<c:if test="${dto.files>0 }">
@@ -71,15 +69,6 @@ pageEncoding="UTF-8"%>
 			          <!-- end of item -->
 		        	</c:if>	
         			<br />
-        			<div>
-						<c:if test="${userCnt>0}">
-							<c:if test="${startPage>6}"><a href="/img/list?pageNum=${startPage-6}">[이전]</a></c:if>
-							<c:forEach var="i" begin="${startPage}" end="${endPage}">
-								<a href="/img/list?pageNum=${i}">[${i}]</a>
-							</c:forEach>
-							<c:if test="${endPage < pageCnt}"><a href="/img/list?pageNum=${startPage+6}">[다음]</a></c:if>
-						</c:if>
-					</div>
 				</div>
 			</div>
 		</section>
