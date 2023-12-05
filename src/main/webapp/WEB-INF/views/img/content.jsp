@@ -29,7 +29,7 @@ pageEncoding="UTF-8"%>
           <div class = "img-select">
           	<c:forEach var="i" items="${arFile }" >
 	            <div class = "img-item">
-	              <a href = "#" data-id = "${arFile[i]+1 }">
+	              <a data-id = "${arFile[i]+1 }">
 	                <img src = "/resources/file/board/${fileList.get(i)}" alt = "shoe image">
 	              </a>
 	            </div>
