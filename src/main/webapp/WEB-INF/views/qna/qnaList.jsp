@@ -48,7 +48,7 @@
 		        <div class = "title">
 		          <a href="qnaView?num=${article.num}&pageNum=${pageNum}"><h2>${article.title}</h2></a>
 		           <div class = "blog-text">
-              <span>${article.writer}</span>
+              <span>${article.write}님</span>
               <h3><p><fmt:formatDate value="${article.reg_date}" type="date" dateStyle="short" /></p></h3>
               <p>조회수 ${article.readcount}</p>
             </div> 	

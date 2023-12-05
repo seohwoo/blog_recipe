@@ -53,7 +53,7 @@
 			    FROM (
 			        SELECT *
 			        FROM board b
-			        JOIN member c ON b.writer = c.name
+			        JOIN member c ON b.writer = c.id
 			        WHERE (c.grade = 2 OR c.grade = 10) AND b.tablenum = 77
 			        ORDER BY
 			            CASE WHEN c.grade = 2 THEN b.reg_date END DESC,

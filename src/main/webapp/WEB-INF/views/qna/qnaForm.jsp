@@ -48,9 +48,9 @@
         <div class="right">
           <h2>무엇이든 질문하세요!</h2>
           <input type="text" class="field" placeholder="제목" name="title" />
-          <input type="text" class="field" placeholder="작성자" name="writer" />
+          <input type="text" class="field" placeholder="작성자" name="writer" value="${sessionScope.memId}" />
 			<c:if test="${num != 0}">
-				 <input type="text" size="40" maxlength="50" name="title" value="[답변]">
+				 <input type="text" size="40" maxlength="50" name="title" value="[답변] ${sessionScope.memId}">
 			</c:if>
           <button class="field btncontroll">
             사진 올리기
