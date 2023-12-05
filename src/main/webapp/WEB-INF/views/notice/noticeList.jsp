@@ -69,14 +69,17 @@
 	</table>
 	</c:if>
 	<br />
+	
 	<c:if test="${count > 0}">
+	 <center><div class="container">
 		<c:if test="${startPage > 10}"><a href="/free/list?pageNum=${startPage-10}">[이전]</a></c:if>
 			<c:forEach var="i" begin="${startPage}" end="${endPage}">
-				<center><a href="/free/list?pageNum=${i}">[${i}]</a></center><br />
+				<a href="/free/list?pageNum=${i}">[${i}]</a>
 			</c:forEach>
 		<c:if test="${endPage < pageCount}"><a href="/free/list?pageNum=${startPage+10}">[다음]</a></c:if>
+		</div></center>
 	</c:if>
-	
+	<br />
 
 	</div>
 </div>
