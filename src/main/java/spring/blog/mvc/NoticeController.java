@@ -30,8 +30,9 @@ public class NoticeController {
 	private NoticeService service;
 	
 	@RequestMapping("form")
-	public String noticeForm(Model model, @RequestParam(value="num", defaultValue="0" )int num) {
+	public String noticeForm(Model model, @RequestParam(value="num", defaultValue="0" )int num, String id) {
 		
+		model.addAttribute("id", id);
 		model.addAttribute("num", num);
 		return "notice/noticeForm";
 	}
@@ -61,7 +62,8 @@ public class NoticeController {
 		if(session.getAttribute("memId") != null) {
 			String id = (String)session.getAttribute("memId");
 			int check = service.adminCheck(id);
-		
+			
+			model.addAttribute("id", id);
 			model.addAttribute("check", check);
 			}
 		return "notice/noticeList";

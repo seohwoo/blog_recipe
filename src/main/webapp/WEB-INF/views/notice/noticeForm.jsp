@@ -26,7 +26,7 @@
 			</tr>
 			<tr>
 				<td>작성자</td>
-				<td><input type="text" name="writer" class="field" /></td>
+				<td><input type="text" name="writer" class="field" value="${id}" /></td>
 			</tr>
 			<tr>
 				<td>내용</td>

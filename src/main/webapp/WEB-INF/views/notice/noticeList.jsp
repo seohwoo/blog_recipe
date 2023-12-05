@@ -26,7 +26,7 @@
 	<table class="board-table">
 		<thead>
 		<tr>
-			<td align="right"><a href="/notice/form">글쓰기</a></td>
+			<td align="right"><a href="/notice/form?id=${id}">글쓰기</a></td>
 		</tr>
 		</thead>
 	</table>
@@ -34,6 +34,7 @@
 	<br />
 </c:if>
 	<c:if test="${count == 0}">
+	<div class="container">
 	<table class="board-table">
 		<thead>
 			<tr>
@@ -41,6 +42,7 @@
 			</tr>
 		</thead>
 	</table>
+	</div>
 	</c:if>
 	<c:if test="${count > 0 }">
 	 <div id="board-list">
