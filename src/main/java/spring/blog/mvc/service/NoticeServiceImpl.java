@@ -58,17 +58,21 @@ public class NoticeServiceImpl implements NoticeService {
 		int pageSize = 5;
 		int startRow = (pageNum - 1)*pageSize+1;
 		//int endRow = pageNum*pageSize;
-		int listNum = 0;
+		int listCount = 0;
 		int count = mapper.contentNum();
 		List<BoardDTO> list=Collections.EMPTY_LIST;
 		if(count > 0 ) {
 			noticeMap.put("start", startRow);
 			noticeMap.put("end", count);
 			list = mapper.noticeList(noticeMap);
-			listNum = mapper.noticeListCount(noticeMap);
+			listCount = mapper.noticeListCount(noticeMap);
+			List<Integer> listNum = new ArrayList<>();
+			for(int i=1 ; i <= listCount ; i++) {
+				listNum.add(i);
+			}
+			model.addAttribute("listNum", listNum);
 		}
 		
-		model.addAttribute("listNum", listNum);
 		model.addAttribute("list", list);
 		model.addAttribute("count", count);
 		model.addAttribute("pageNum", pageNum);
