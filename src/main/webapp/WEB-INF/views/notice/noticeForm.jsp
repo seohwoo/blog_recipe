@@ -26,7 +26,7 @@
 			</tr>
 			<tr>
 				<td>작성자</td>
-				<td><input type="text" name="writer" class="field" value="${id}" /></td>
+				<td><input type="text" name="writer" class="field" value="${sessionScope.memId}" readonly="readonly" /></td>
 			</tr>
 			<tr>
 				<td>내용</td>
@@ -34,7 +34,7 @@
 			</tr>
 			<tr>
 				<td>파일 첨부</td>
-				<td><input type="file" name="filelist" multiple="multiple" class="field:focus" ></td>
+				<td><input type="file" name="filelist" multiple="multiple" ></td>
 			</tr>
 			<tr>      
  				<td colspan="2"> 

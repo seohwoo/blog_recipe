@@ -26,7 +26,7 @@
 	<table class="board-table">
 		<thead>
 		<tr>
-			<td align="right"><a href="/notice/form?id=${id}">글쓰기</a></td>
+			<td align="right"><a href="/notice/form">글쓰기</a></td>
 		</tr>
 		</thead>
 	</table>
