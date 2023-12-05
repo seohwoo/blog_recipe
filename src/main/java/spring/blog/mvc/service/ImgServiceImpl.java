@@ -3,6 +3,7 @@ package spring.blog.mvc.service;
 import java.io.File;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -89,7 +90,7 @@ public class ImgServiceImpl implements ImgService{
 			for (BoardDTO boardDTO : userList) {
 				replyCnt = mapper.ReplyBoardCnt(boardDTO.getNum());
 				if(replyCnt >0) {
-					avgStars = (double) boardDTO.getStars() / replyCnt;
+					avgStars = Math.round(((double) boardDTO.getStars() / replyCnt) * 10.0) / 10.0;
 					starMap.put(boardDTO.getNum(), avgStars);
 				}else {
 					starMap.put(boardDTO.getNum(), (double) 0);
@@ -135,17 +136,24 @@ public class ImgServiceImpl implements ImgService{
 	public void read(int num, Model model) {
 		BoardDTO dto = mapper.readBoard(num);
 		List<String> fileList = mapper.readfiles(num);
+		int[] arFile = new int [fileList.size()];
+		int[] arStars = {1,2,3,4,5};
 		int replyCnt = 0;
 		double avgStars = 0;
-		String formatavgStars = "0";
 		replyCnt = mapper.ReplyBoardCnt(dto.getNum());
 		if(replyCnt > 0) {
-			avgStars = (double) dto.getStars() / replyCnt;
-			formatavgStars = String.format("%.1f", avgStars);
+			avgStars = Math.round(((double) dto.getStars() / replyCnt) * 10.0) / 10.0;
 		}
+		for (int i = 0; i < arFile.length; i++) {
+			arFile[i] = i+1;
+		}
+		
 		model.addAttribute("dto", dto);
 		model.addAttribute("fileList", fileList);
-		model.addAttribute("formatavgStars", formatavgStars);
+		model.addAttribute("arStars", arStars);
+		model.addAttribute("arFile", arFile);
+		model.addAttribute("avgStars", avgStars);
+		model.addAttribute("replyCnt", replyCnt);
 	}
 	
 	@Override

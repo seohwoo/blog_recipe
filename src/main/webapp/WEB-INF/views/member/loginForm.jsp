@@ -13,12 +13,44 @@
 	</head>
 
 	<body onload="begin()" align-items="center" justify-content="center">
+		<!-- 
 		<jsp:include page="/WEB-INF/views/main/nav.jsp" />
 		<header>
 		
 		<div class="login-form">
-	
+		 -->
 		
+		
+      <header>
+      <div class = "banner">
+        <div class = "container">
+          <h1 class = "banner-title">
+            <span>Our.</span> Recipe Blog
+          </h1>
+          <p>Search for the recipe you want..!!</p>
+          <form name="myform" action="/member/loginPro" method="post" onSubmit="return checkIt()">
+            <input type = "text" name="id" class = "search-input" placeholder="ID">
+            <input type = "password" name="pw" class = "search-input" placeholder="PassWord">
+            
+            <button type = "submit" class = "search-btn">
+            
+              <i class = "fas fa-search"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+      </header>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<!-- 
 		<form name="myform" action="/member/loginPro" method="post" onSubmit="return checkIt()">
 			<TABLE cellSpacing=1 cellPadding=1 width="260" border=1 align="center" bgcolor="#F6F6F6" >
 				<tr height="30" align="center">
@@ -71,7 +103,7 @@
 		      transform: translate(-50%, -50%);
 		    }
 		</style>
-		
+		 -->
 		
 			
 	</body>
