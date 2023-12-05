@@ -47,17 +47,27 @@
 
 	<select id="list" resultType="spring.blog.mvc.bean.BoardDTO" parameterType="hashmap">
 	<![CDATA[
-		select * from 	
-			(select b.* , rownum r from 
-				(select * from board where tablenum=77 order by reg_date desc) b) 
-					where r >= #{start} and r <= #{end} 
+			SELECT * 
+			FROM (
+			    SELECT a.*, ROWNUM r
+			    FROM (
+			        SELECT *
+			        FROM board b
+			        JOIN member c ON b.writer = c.name
+			        WHERE (c.grade = 2 OR c.grade = 10) AND b.tablenum = 77
+			        ORDER BY
+			            CASE WHEN c.grade = 2 THEN b.reg_date END DESC,
+			            CASE WHEN c.grade = 10 THEN b.reg_date END ASC
+			    ) a
+			)
+			WHERE r >= #{start} AND r <= #{end}
 	]]>	
 	</select>
 	
 	<delete id="deleteNum">
 		delete from board where num=#{num}
 	</delete>
-	<delete id="deleFile">
+	<delete id="deleteFile">
 		delete from files where boardnum=#{boardnum}
 	</delete>
 	

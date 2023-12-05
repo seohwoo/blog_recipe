@@ -53,13 +53,13 @@ body {
   padding: 25px 40px;
 }
 
-h2 {
+h2, h3 {
   position: relative;
   padding: 0 0 10px;
   margin-bottom: 10px;
 }
 
-h2:after {
+h2:after, h3:after {
   content: "";
   position: absolute;
   left: 50%;

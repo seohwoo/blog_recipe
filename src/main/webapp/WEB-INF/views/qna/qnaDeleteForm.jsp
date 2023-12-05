@@ -1,27 +1,29 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-
-<!-- 관리자 체크 
-	c:if test="${sessionScope.grade == 10}" -->
 <html>
 	<head>
-		<title>삭제하기</title>
-			<link rel="stylesheet" href="https://unpkg.com/mvp.css">
+		<meta charset="utf-8">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <title>삭제하기</title>
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+	    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+	    <link rel="stylesheet" href="/resources/css/mainstyle.css">
 	</head>
-	<body bgcolor="${bodyback_c}">
-	<center><b>글삭제</b>
-	<br>
-		<form method="POST" name="qnaDeleteForm"  action="/blog/qnaDeletePro"> 
-			<table border="1" align="center" cellspacing="0" cellpadding="0" width="360">
-				<tr height="30">
-					<td align=center > 삭제하시겠습니까?   
-						<input type="submit" value="글삭제" >
-						<input type="button" value="글목록" onclick="document.location.href='/blog/qnaList?pageNum=${pageNum}'"> 
-						<input type="hidden" name="num" value="${num}">
-						<input type="hidden" name="pageNum" value="${pageNum}">
-					</td>
-				</tr>
-			</table> 
-		</form>
-	</body>
+	<body >
+	<center>
+     <table width=500 cellpadding="0" cellspacing="0"  align="center" border="1" >
+          <form name="" method="post" action="/blog/deletePro"  >
+            <b> 삭제하시겠습니까? </b><br />
+          <div>
+               <input type="submit" value="글삭제" >
+               <input type="button" value="목록으로 돌아가기" onclick="document.location.href='/blog/qnaList?pageNum=${pageNum}'">  
+         		<input type="hidden" name="num" value="${num}">
+				<input type="hidden" name="pageNum" value="${pageNum}">
+         </div>
+          </form>
+         </table>
+        </center> 
+        </body>
+</html>
+
