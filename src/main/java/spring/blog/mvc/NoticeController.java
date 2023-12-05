@@ -47,7 +47,7 @@ public class NoticeController {
 			}
 		}
 		dto.setFiles(uploadFile);
-		service.writeNotice(dto);
+		service.writeNotice(dto); 
 		
 		if(uploadFile>0) {
 			String filePath= request.getServletContext().getRealPath("/resources/file/board/");

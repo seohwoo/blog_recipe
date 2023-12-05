@@ -42,7 +42,7 @@
 			</tr>
 		</thead>
 	</table>
-	</div>
+	</div> 
 	</c:if>
 	<c:if test="${count > 0 }">
 	 <div id="board-list">

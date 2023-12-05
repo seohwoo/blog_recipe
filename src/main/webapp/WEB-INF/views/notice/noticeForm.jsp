@@ -17,7 +17,7 @@
 		<table>
 			<tr>
 				<td class="right">
-					<a href="/notice/list">돌아가기</a>
+					<a href="/notice/list">돌아가기</a> 
 				</td>
 			</tr>
 			<tr>
