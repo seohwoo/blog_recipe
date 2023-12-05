@@ -29,19 +29,11 @@ public class GuestBookController {
 	
 	@RequestMapping("guestBookForm")
 	public String guestBookInsert(@RequestParam(value="pageNum", defaultValue="1") int pageNum, Model model, HttpSession session) {
-		
-		
-		
-		
 		GuestBookService.guestBookList(pageNum, model);
 		
-		//List<BoardDTO> list = GuestBookService.guestBookList(pageNum, model);
-		//model.addAttribute("list", list);
-
 		String id = (String) session.getAttribute("memId");
 		MemberDTO member = memberservice.member(id);
 		model.addAttribute("member", member);
-		
 		
 		return "guestbook/guestBookForm";
 	}

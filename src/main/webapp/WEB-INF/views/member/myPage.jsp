@@ -52,7 +52,7 @@
 				</c:if>
 			</table>
 			<p>	
-				<a href="/member/main">메인</a>
+				<a href="/main/main">메인</a>
 			</p>
 			
 			

@@ -6,10 +6,8 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>메인</title>
-		<link href="/resources/css/style.css" rel="stylesheet" type="text/css">
 		<script src="/resources/js/member.js" language="javascript"></script>
 	</head>
-
 	<c:if test = "${sessionScope.memId == null}">
 		<body>
 			<form name="inform" method="post" action="/member/loginPro"  onSubmit="return checkIt();">
