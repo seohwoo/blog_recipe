@@ -73,6 +73,10 @@
 		delete from board where num=#{num}
 	</delete>
 
+	<delete id="deleteSubBoard" parameterType="int">
+		delete from board where boardnum=#{num}
+	</delete>
+
 	<delete id="deletefiles" parameterType="int">
 		delete from files where boardnum=#{boardnum}
 	</delete>

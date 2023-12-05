@@ -28,7 +28,7 @@ public class ImgServiceImpl implements ImgService{
 	@Autowired
 	private HashMap<Integer, String> imgMap;
 	@Autowired
-	private HashMap<Integer, String> starMap;
+	private HashMap<Integer, Double> starMap;
 	@Autowired
 	private HashMap<Integer, Integer> cntMap;
 	
@@ -42,10 +42,8 @@ public class ImgServiceImpl implements ImgService{
 			}
 		}
 		dto.setFiles(files);
-		logger.info("===write??===>>>>");
 		if(dto.getBoardnum() > 0) {
 			int result = mapper.starsUp(dto.getStars(), dto.getBoardnum());
-			logger.info("===result===>>>>"+result);
 		}
 		check = mapper.imgWirte(dto);
 		return check;
@@ -75,9 +73,10 @@ public class ImgServiceImpl implements ImgService{
 
 	@Override
 	public void showimgList(int pageNum, Model model) {
-		int pageSize = 10;
+		int pageSize = 6;
 		int replyCnt = 0;
-		double avgStars = 0;
+		int[] arStars = {1,2,3,4,5};
+ 		double avgStars = 0;
 		String formatavgStars = "";
 		int start = (pageNum -1) * pageSize +1;
 		int end = pageNum * pageSize;
@@ -91,10 +90,9 @@ public class ImgServiceImpl implements ImgService{
 				replyCnt = mapper.ReplyBoardCnt(boardDTO.getNum());
 				if(replyCnt >0) {
 					avgStars = (double) boardDTO.getStars() / replyCnt;
-					formatavgStars = String.format("%.1f", avgStars);
-					starMap.put(boardDTO.getNum(), formatavgStars);
+					starMap.put(boardDTO.getNum(), avgStars);
 				}else {
-					starMap.put(boardDTO.getNum(), "0");
+					starMap.put(boardDTO.getNum(), (double) 0);
 				}
 				cntMap.put(boardDTO.getNum(), replyCnt);
 				if(mapper.fileCnt(boardDTO.getNum())>0) {
@@ -108,6 +106,7 @@ public class ImgServiceImpl implements ImgService{
 		model.addAttribute("imgMap", imgMap);
 		model.addAttribute("starMap", starMap);
 		model.addAttribute("cntMap", cntMap);
+		model.addAttribute("arStars", arStars);
 		model.addAttribute("userCnt", cnt);
 		model.addAttribute("pageSize", pageSize);
 		model.addAttribute("pageNum", pageNum);
@@ -138,7 +137,7 @@ public class ImgServiceImpl implements ImgService{
 		List<String> fileList = mapper.readfiles(num);
 		int replyCnt = 0;
 		double avgStars = 0;
-		String formatavgStars = "";
+		String formatavgStars = "0";
 		replyCnt = mapper.ReplyBoardCnt(dto.getNum());
 		if(replyCnt > 0) {
 			avgStars = (double) dto.getStars() / replyCnt;
@@ -172,6 +171,7 @@ public class ImgServiceImpl implements ImgService{
 				}
 			}
 			mapper.deletefiles(num);
+			mapper.deleteSubBoard(num);
 		}
 		return check;
 	}
