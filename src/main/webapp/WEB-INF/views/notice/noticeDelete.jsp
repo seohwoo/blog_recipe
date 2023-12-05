@@ -4,5 +4,7 @@
 
 <% request.setCharacterEncoding("UTF-8");%>
 
-	<b>글이 삭제되었습니다.</b>
-	<meta http-equiv="Refresh" content="5;url=/notice/list?pageNum=${pageNum}" >
+<script language="JavaScript">           
+         alert("글이 삭제되었습니다.");
+    </script>
+ <meta http-equiv="Refresh" content="0;url=/notice/list" >
