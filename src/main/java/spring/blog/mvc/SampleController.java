@@ -12,14 +12,14 @@ public class SampleController {
 		return "main/main";
 	}
 	
-	@RequestMapping("content")
+	@RequestMapping("realcontent")
 	public String content() {
-		return "sample/content";
+		return "main/realContent";
 	}
 	
 	@RequestMapping("form")
 	public String form() {
-		return "sample/form";
+		return "main/form";
 	}
 	
 	
