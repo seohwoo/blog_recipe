@@ -47,19 +47,24 @@
         <div class="left"></div>
         <div class="right">
           <h2>무엇이든 질문하세요!</h2>
+          
           <input type="text" class="field" placeholder="제목" name="title" />
-          <input type="text" class="field" placeholder="작성자" name="writer" value="${sessionScope.memId}" />
 			<c:if test="${num != 0}">
-				 <input type="text" size="40" maxlength="50" name="title" value="[답변] ${sessionScope.memId}">
+				 <input type="text" class="field" size="40" maxlength="50" name="writer" value="[답변] ${sessionScope.memId}">
+			</c:if>
+			<c:if test="${num == 0}">
+				 <input type="text" class="field" size="40" maxlength="50" name="writer" value="${sessionScope.memId}">
 			</c:if>
           <button class="field btncontroll">
             사진 올리기
             <input type="file" class="btns" multiple="multiple" name="fileList" onchange="displayFileCount()"/>
           </button>
           <textarea placeholder="내용" class="field" name="content" name="fileList"></textarea>
-          <button class="btn"><input type="submit" value="글쓰기"></button>
-          <button class="btn"><input type="reset" value="다시쓰기"></button>
-          <button class="btn"><input type="button" value="목록보기" OnClick="window.location='/blog/qnaList'"></button>
+          <input type="submit" value="글쓰기" class="btn">
+          <br />
+          <input type="reset" value="다시쓰기" class="btn">
+          <br />
+          <input type="button" value="목록보기" OnClick="window.location='/blog/qnaList'" class="btn">
         </div>
       </div>
     </div>

@@ -18,9 +18,6 @@ pageEncoding="UTF-8"%>
       <jsp:include page="/WEB-INF/views/main/search.jsp" />
       </header>
     <!-- end of header -->
-    <jsp:include page="/WEB-INF/views/main/bestBlog.jsp" />
-    <jsp:include page="/WEB-INF/views/main/blogList.jsp" />
-    <jsp:include page="/WEB-INF/views/main/blogContent.jsp" />
     <jsp:include page="/WEB-INF/views/main/footer.jsp" />
   </body>
 </html>

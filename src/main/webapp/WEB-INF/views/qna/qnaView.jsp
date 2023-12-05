@@ -36,12 +36,12 @@
                <div >
 	               <a href = "/blog/qnaList?pageNum=${pageNum}"><i class = "fab fa-pinterest" style= "font-size:50px"></i></a>
 	               <p>돌아가기</p>   
-	             
+	           	<c:if test="${grade == 10}">
 	               <a href = "/blog/qnaForm?num=${article.num} "><i class = "fab fa-pinterest" style= "font-size:50px"></i></a>
 	               <p>답글쓰기</p>     
 	               <a href = "/blog/qnaDeleteForm?num=${article.num}&pageNum=${pageNum}"><i class = "fab fa-pinterest" style= "font-size:50px"></i></a>
 	               <p>삭제하기</p>
-               
+	           	</c:if>
                </div>
            </div>
     </section>   
