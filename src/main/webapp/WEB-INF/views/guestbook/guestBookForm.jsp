@@ -37,7 +37,7 @@
 			<div class = "banner">
         	<div class = "container">
 			<c:if test="${userCnt>0 }">
-				<table border="1" width="350" cellpadding="0" cellspacing="0" align="center"> 
+				<table border="1" width="350" cellpadding="0" cellspacing="0" > 
 				    <tr height="30"> 
 				<div class = "design-content">      
 				<c:forEach var="article" items="${userList }">
@@ -64,7 +64,7 @@
 		</center>
 		
 		<form method="post" name="guestBookForm" action="guestBookPro">
-			<table border="1" width="350" align="center">
+			<table border="1" width="350" >
 				<tr>
 					
 				  	<td  width="70" align="center" >내용</td>
@@ -75,7 +75,7 @@
 				
 				<input type="hidden" name="title" value="방명록">
 				<input type="hidden" name="tablenum" value="30">
-				<input type="hidden" name="writer" value="${member.nic}">
+				<input type="hidden" name="writer" value="${sessionScope.memId}">
 				
 				<tr>
 					<td colspan=2 align="center">
@@ -147,5 +147,7 @@
 		</style>
 		
 		
+	<jsp:include page="/WEB-INF/views/main/footer.jsp" />	
+	</div>
 	</body>
 </html>
