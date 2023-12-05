@@ -4,12 +4,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/sample/*")
+@RequestMapping("/main/*")
 public class SampleController {
 
 	@RequestMapping("main")
 	public String main() {
-		return "sample/main";
+		return "main/main";
 	}
 	
 	@RequestMapping("content")

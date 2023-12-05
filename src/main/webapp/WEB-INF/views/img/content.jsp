@@ -16,33 +16,44 @@ pageEncoding="UTF-8"%>
 				<table>  
 				  <tr>
 				    <td>작성자</td>
-				    <td>글제목</td>
-				    <c:if test="${dto.files>0 }">
-				    	<td>첨부파일</td>
-				    </c:if>
-				    <td>글내용</td>
-				    <td>조회수</td>
-				    <td>별점수</td>
-				    <td>좋아요</td>
-				    <td>작성일</td>
-				  </tr>
-				  <tr>
 				    <td>${dto.writer}</td>
+				  </tr>  
+				  <tr>
+				  	<td>글제목</td>
 				    <td>${dto.title}</td>
-				  	<c:if test="${dto.files>0 }">
-				    	<td>
-				    		<c:forEach var="filename" items="${fileList }">
-				    			<img src="/resources/file/board/${filename}" width="100px" height="100px"/>
-				    		</c:forEach>
-				    	</td>
-				  	</c:if>
-				    <td><pre>${dto.content}</pre></td>
-				    <td>${dto.readcount}</td>
-				    <td>${formatavgStars}</td>
-				    <td>${dto.likes}</td>
-				    <td>
-					     <fmt:formatDate value="${dto.reg_date}" dateStyle="long" type="both"/> 
-					</td>
+				  </tr>
+				    <c:if test="${dto.files>0 }">
+				  		<tr>  	
+				    		<td>첨부파일</td>
+				    		<td>
+				    			<c:forEach var="filename" items="${fileList }">
+				    				<img src="/resources/file/board/${filename}" width="100px" height="100px"/>
+				    			</c:forEach>
+				    		</td>
+				    	</tr>	
+				    </c:if>
+				    <tr>
+				    	<td>글내용</td>
+				    	<td><pre>${dto.content}</pre></td>
+				    </tr>
+				    <tr>
+				    	<td>조회수</td>
+				    	<td>${dto.readcount}</td>
+				    </tr>
+				    <tr>
+				    	<td>별점수</td>
+				    	<td>${formatavgStars}</td>
+				    </tr>
+				    <tr>
+				    	<td>좋아요</td>
+				    	<td>${dto.likes}</td>
+				    </tr>
+				    <tr>
+					    <td>작성일</td>
+				   	 	<td>
+					     	<fmt:formatDate value="${dto.reg_date}" dateStyle="long" type="both"/> 
+						</td>
+				    </tr>
 				  <tr height="30">
 				    <td>
 						<input type="button" value="글수정" 
