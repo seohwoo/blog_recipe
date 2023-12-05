@@ -35,15 +35,15 @@
 		 <td>조회수</td>
 		</tr>
 		<c:forEach var="notice" items="#{list}">
-		<c:forEach var="i" step="1" begin="1" end="${listNum}">
+		
 			<tr>
-				<td>${i}</td>
+				<td><c:forEach var="i" items="${listNum}" varStatus="status">${status.current}</c:forEach></td>
 		 		<td><a href="/notice/content?num=${notice.num}&pageNum=${pageNum}">${notice.title}</a></td>
 				<td>${notice.writer}</td>
 				<td><fmt:formatDate pattern="yyyy/MM/dd" value="${notice.reg_date}" /></td>
 		 		<td>${notice.readcount}</td>
 			</tr>
-		</c:forEach>
+		
 		</c:forEach>
 	</table>
 	</c:if>

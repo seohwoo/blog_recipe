@@ -66,8 +66,8 @@
 	<c:if test="${count == 0}">
 		<d>등록된 댓글이 없습니다.</d>
 	</c:if>
-<%--<c:if test="${check == 10}"> --%>	
+<c:if test="${check == 10}"> 
 		<input type="button" value="글삭제" onclick="document.location.href='/notice/delete?num=${dto.num}&pageNum=${pageNum}'">
 		<input type="button" value="글수정" onclick="document.location.href='/notice/update?num=${dto.num}&pageNum=${pageNum}'">
-<%--	</c:if> --%>
+	</c:if>
 </body>
