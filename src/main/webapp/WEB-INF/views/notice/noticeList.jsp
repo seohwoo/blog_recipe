@@ -34,6 +34,7 @@
 	<br />
 </c:if>
 	<c:if test="${count == 0}">
+	<div class="container">
 	<table class="board-table">
 		<thead>
 			<tr>
@@ -41,6 +42,7 @@
 			</tr>
 		</thead>
 	</table>
+	</div> 
 	</c:if>
 	<c:if test="${count > 0 }">
 	 <div id="board-list">
