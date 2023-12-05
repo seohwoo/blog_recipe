@@ -145,7 +145,7 @@ public class ImgServiceImpl implements ImgService{
 			avgStars = Math.round(((double) dto.getStars() / replyCnt) * 10.0) / 10.0;
 		}
 		for (int i = 0; i < arFile.length; i++) {
-			arFile[i] = i+1;
+			arFile[i] = i;
 		}
 		
 		model.addAttribute("dto", dto);
@@ -197,6 +197,41 @@ public class ImgServiceImpl implements ImgService{
 		return check;
 	}
 
-
+	@Override
+	public void search(String search, Model model) {
+		String searchValue = "%" + search + "%";
+		int result = mapper.searchListCnt(searchValue);
+		int replyCnt = 0;
+		double avgStars = 0;
+		int[] arStars = {1,2,3,4,5};
+		List<BoardDTO> list = Collections.EMPTY_LIST;
+		if(result>0) {
+			list = mapper.searchList(searchValue);
+			for (BoardDTO boardDTO : list) {
+				replyCnt = mapper.ReplyBoardCnt(boardDTO.getNum());
+				if(replyCnt >0) {
+					avgStars = Math.round(((double) boardDTO.getStars() / replyCnt) * 10.0) / 10.0;
+					starMap.put(boardDTO.getNum(), avgStars);
+				}else {
+					starMap.put(boardDTO.getNum(), (double) 0);
+				}
+				cntMap.put(boardDTO.getNum(), replyCnt);
+				if(mapper.fileCnt(boardDTO.getNum())>0) {
+					imgMap.put(boardDTO.getNum(),mapper.readfiles(boardDTO.getNum()).get(0));
+				}else {
+					imgMap.put(boardDTO.getNum(), "1111.jpg");
+				}
+			}
+		}
+		model.addAttribute("search", search);
+		model.addAttribute("result", result);
+		model.addAttribute("searchList", list);
+		model.addAttribute("imgMap", imgMap);
+		model.addAttribute("starMap", starMap);
+		model.addAttribute("cntMap", cntMap);
+		model.addAttribute("arStars", arStars);
+		model.addAttribute("avgStars", avgStars);
+		model.addAttribute("replyCnt", replyCnt);
+	}
 
 }

@@ -18,8 +18,8 @@ pageEncoding="UTF-8"%>
             <span>Our.</span> Recipe Blog
           </h1>
           <p>Search for the recipe you want..!!</p>
-          <form>
-            <input type = "text" class = "search-input" placeholder="find your recipe . . .">
+          <form action="/img/search" method="post">
+            <input type = "text" class = "search-input" placeholder="find your recipe . . ." name="search">
             <button type = "submit" class = "search-btn">
               <i class = "fas fa-search"></i>
             </button>

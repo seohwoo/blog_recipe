@@ -29,4 +29,6 @@ public interface ImgMapper {
 	public List<BoardDTO> readReplyBoard(@Param("num") int num);
 	public int starsUp(@Param("stars") int stars, @Param("boardnum") int boardnum);
 	public int likesUp(@Param("num") int num);
+	public int searchListCnt(String searchValue);
+	public List<BoardDTO> searchList(String searchValue);
 }

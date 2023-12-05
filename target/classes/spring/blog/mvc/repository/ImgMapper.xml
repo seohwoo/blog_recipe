@@ -101,4 +101,12 @@
 		update board set likes=likes+1 where num=#{num} and tablenum=99
 	</update>
 	
+	<select id="searchListCnt" parameterType="String" resultType="int">
+		select count(*) from board where tablenum=99 and title like #{searchValue} and boardnum=0
+	</select>
+	
+	<select id="searchList" parameterType="String" resultType="spring.blog.mvc.bean.BoardDTO">
+		select * from board where tablenum=99 and title like #{searchValue} and boardnum=0
+	</select>
+	
 </mapper>

@@ -18,5 +18,6 @@ public interface ImgService {
 	public int delete(int num, String path);
 	public int update(BoardDTO dto);
 	public int likesUp(int num);
+	public void search(String search, Model model);
 	
 }
