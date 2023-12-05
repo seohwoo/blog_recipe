@@ -108,20 +108,18 @@ public class QnAServiceImpl implements QnAService {
 	//글과 사진 삭제 
 	@Override
 	public int deleteNum(int num, String path) {
-		int result = 0;
-		List<FilesDTO> fileList = mapper.fileList(num);
-		if(fileList != null) {
+		int check = mapper.deleteNum(num);
+		if(check > 0) {
+			List<FilesDTO> fileList = mapper.fileList(num);
 			for(FilesDTO filesDTO : fileList) {
 				File f = new File(path+filesDTO.getFilename());
 				if(f.isFile()) {
 					f.delete();
 				}
 			mapper.deleteFile(num);
-			result = mapper.deleteNum(num);
+			mapper.deleteNum(num);
 			}
 		}
-		return result;
-	}
-
+		return check;
+		}
 }
-
