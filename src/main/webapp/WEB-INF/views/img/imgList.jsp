@@ -19,8 +19,12 @@ pageEncoding="UTF-8"%>
     	<section class = "design" id = "design">
       		<div class = "container">
         		<div class = "title">
+        			<br /><br />
           			<h2>Blog List</h2>
           			<p>recent & best recipes on the blog</p>
+          			<p>
+          				<a href="/img/write?pageNum=${pageNum}">💌 Create Blog 💌</a>
+          			</p>
         		</div>
 		        <div class = "design-content">
 		        	<c:if test="${userCnt <= 0 }">
@@ -33,13 +37,11 @@ pageEncoding="UTF-8"%>
 				          	<a href="/img/content?num=${dto.num}&pageNum=${pageNum }">
 				            	<div class = "design-img">
 				              		<span><i class = "far fa-heart"></i> ${dto.likes }</span>
-				              			<!-- 
 				              			<c:if test="${dto.files>0 }">
 											<img src="/resources/file/board/${imgMap.get(dto.num)}" width="300px" height="400px" />
 										</c:if>
-										-->
-										<img src="/resources/images/1111.jpg" width="300px" height="400px" />
 										<c:if test="${dto.files==0 }">
+											<img src="/resources/images/1111.jpg" width="300px" height="400px" />
 										</c:if>
 				              		<span>${dto.writer }</span>
 				            	</div>
@@ -50,14 +52,14 @@ pageEncoding="UTF-8"%>
 				            	<p>
 				            		<small>
 						            	<c:forEach var="i" items="${arStars }">
-						            		<c:if test="${i< starMap.get(dto.num)}">
+						            		<c:if test="${i <= starMap.get(dto.num)}">
 						            			<i class="fas fa-star" style="color: #ffc83d;"></i>
 						            		</c:if>
-						            		<c:if test="${i - 0.5 <= starMap.get(dto.num)}">
-						            			<i class="fas fa-star" style="color: #ffc83d;"></i>
+						            		<c:if test="${i - 0.5 <= starMap.get(dto.num) && i> starMap.get(dto.num)}">
+						            			<i class="fas fa-star-half-alt" style="color: #ffc83d;"></i>
 						            		</c:if>
-						            		<c:if test="${i > starMap.get(dto.num)}">
-						            			<i class="fas fa-star" style="color: #ffc83d;"></i>
+						            		<c:if test="${i >= starMap.get(dto.num) && i - 0.5 > starMap.get(dto.num)}">
+						            			<i class="far fa-star" style="color: #ffc83d;"></i>
 						            		</c:if>
 						            	</c:forEach>
 						            	${starMap.get(dto.num)} (${cntMap.get(dto.num)}) 🔎 (${dto.readcount})
@@ -70,11 +72,25 @@ pageEncoding="UTF-8"%>
 		        	</c:if>	
         			<br />
 					<c:if test="${userCnt>0}">
-						<c:if test="${startPage>6}"><a href="/img/list?pageNum=${startPage-6}">[이전]</a></c:if>
+						<c:if test="${startPage>6}">
+						<li class="page-item">
+          					<a class="page-link" href="/img/list?pageNum=${startPage-6}" aria-label="Previous">
+            					<span aria-hidden="true">&laquo; 이전</span>
+          					</a>
+        				</li>
+						</c:if>
 						<c:forEach var="i" begin="${startPage}" end="${endPage}">
-							<a href="/img/list?pageNum=${i}">[${i}]</a>
+							<li class="page-item ${(i == pageNum) ? "active" : "" }">
+		          				<a class="page-link" href="/img/list?pageNum=${i}">${i}</a>
+		        			</li>
 						</c:forEach>
-						<c:if test="${endPage < pageCnt}"><a href="/img/list?pageNum=${startPage+6}">[다음]</a></c:if>
+						<c:if test="${endPage < pageCnt}">
+		        			<li class="page-item">
+		          				<a class="page-link" href="/img/list?pageNum=${startPage+6}" aria-label="Next">
+		            				<span aria-hidden="true">&laquo; 다음</span>
+		          				</a>
+		        			</li>
+		        		</c:if>							
 					</c:if>
 				</div>
 			</div>

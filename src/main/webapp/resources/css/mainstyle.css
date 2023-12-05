@@ -26,6 +26,10 @@ img{
     padding: 0 1.2rem;
 }
 
+a {
+	text-decoration: none;
+}
+
 /* header */
 header{
     min-height: 100vh;

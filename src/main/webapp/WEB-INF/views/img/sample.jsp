@@ -7,152 +7,205 @@ pageEncoding="UTF-8"%>
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Our.Recipe Blog</title>
+    <title>Product Card/Page</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Font awesome icon -->
+    <link rel="stylesheet" href="/resources/css/realcontentstyle.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
-    <link rel="stylesheet" href="/resources/css/mainstyle.css">
   </head>
   <body>
-  	<!-- design -->
-    <section class = "design" id = "design">
-      <div class = "container">
-        <div class = "title">
-          <h2>Blog List</h2>
-          <p>recent & best recipes on the blog</p>
-        </div>
-
-        <div class = "design-content">
-        	<c:if test="${userCnt <= 0 }">
-        		<p>There are no saved articles in the blog</p>
-        	</c:if>
-        	<c:if test="${userCnt > 0 }">
-        		<c:forEach var="dto" items="${userList }">
-		          <!-- item -->
-		          <div class = "design-item">
-		          	<a href="/img/content?num=${dto.num}&pageNum=${pageNum }">
-		            	<div class = "design-img">
-		              		<span><i class = "far fa-heart"></i> ${dto.likes }</span>
-		              			<c:if test="${dto.files>0 }">
-									<img src="/resources/file/board/${imgMap.get(dto.num)}" />
-								</c:if>
-								<c:if test="${dto.files==0 }">
-									<img src="/resources/images/1111.jpg" />
-								</c:if>
-		              		<span>Our & Recipe</span>
-		            	</div>
-		            </a>
-		            <div class = "design-title">
-		              ${dto.title }
-		            </div>
-		          </div>
-	          </c:forEach>
-	          <!-- end of item -->
-        	</c:if>	
-        	<br />
-			<c:if test="${userCnt>0}">
-				<c:if test="${startPage>6}"><a href="/img/list?pageNum=${startPage-6}">[이전]</a></c:if>
-				<c:forEach var="i" begin="${startPage}" end="${endPage}">
-					<a href="/img/list?pageNum=${i}">[${i}]</a>
+    <jsp:include page="/WEB-INF/views/main/nav.jsp" />
+    <div class = "card-wrapper">
+      <div class = "card">
+        <!-- card left -->
+        <div class = "product-imgs">
+          <div class = "img-display">
+            <div class = "img-showcase">
+            	<c:forEach var="filename" items="${fileList }">
+					<img src="/resources/file/board/${filename}" alt = "shoe image"/>
 				</c:forEach>
-				<c:if test="${endPage < pageCnt}"><a href="/img/list?pageNum=${startPage+6}">[다음]</a></c:if>
-			</c:if>
-        	
-          
-          <!-- item -->
-          <div class = "design-item">
-            <div class = "design-img">
-              <img src = "/resources/images/art-design-2.jpg" alt = "">
-              <span><i class = "far fa-heart"></i> 22</span>
-              <span>Art & Design</span>
-            </div>
-            <div class = "design-title">
-              <a href = "#">make an awesome art portfolio for college or university</a>
             </div>
           </div>
-          <!-- end of item -->
-          
+          <div class = "img-select">
+          	<c:forEach var="filename" items="${fileList }" >
+	            <div class = "img-item">
+	              <a href = "#" data-id = "1">
+	                <img src = "/resources/file/board/${filename}" alt = "shoe image">
+	              </a>
+	            </div>
+            </c:forEach>
+          </div>
+        </div>
+        <!-- card right -->
+        <div class = "product-content">
+          <h2 class = "product-title">${dto.title }</h2>
+          <div class = "product-rating">
+            <p>
+				<small>
+					<c:forEach var="i" items="${arStars }">
+						<c:if test="${i <= avgStars}">
+							<i class="fas fa-star" style="color: #ffc83d;"></i>
+						</c:if>
+						<c:if test="${i - 0.5 <= avgStars && i> avgStars}">
+							<i class="fas fa-star-half-alt" style="color: #ffc83d;"></i>
+						</c:if>
+						<c:if test="${i >= avgStars && i - 0.5 > avgStars}">
+							<i class="far fa-star" style="color: #ffc83d;"></i>
+						</c:if>
+					</c:forEach>
+					${starMap.get(dto.num)} (${cntMap.get(dto.num)}) 🔎 (${dto.readcount})
+				</small>
+			</p>
+            <span>${avgStars}(${replyCnt})</span>
+          </div>
+          <div class = "purchase-info">
+            <input type = "number" value = "${dto.likes }" readonly="readonly">
+            <button type = "button" class = "btn">
+              👍
+            </button>
+          </div>
+
+          <div class = "social-links">
+            <p>Share At: </p>
+            <a href = "#">
+              <i class = "fab fa-facebook-f"></i>
+            </a>
+            <a href = "#">
+              <i class = "fab fa-twitter"></i>
+            </a>
+            <a href = "#">
+              <i class = "fab fa-instagram"></i>
+            </a>
+            <a href = "#">
+              <i class = "fab fa-whatsapp"></i>
+            </a>
+            <a href = "#">
+              <i class = "fab fa-pinterest"></i>
+            </a>
+          </div>
         </div>
       </div>
-    </section>
-    <!-- end of design -->
+    </div>
+
+    <jsp:include page="/WEB-INF/views/main/footer.jsp" />
+    <script src="/resources/js/realcontentjs.js"></script>
   </body>
 </html>
-<!--
+
+<!-- 
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8" />
         <title>이미지게시판</title>
+        <link rel="stylesheet" href="https://unpkg.com/mvp.css"> 
     </head>
-    <body>
-    	<center >
-    		<br /><br />
-		   	<h2>💌글목록💌</h2>
-		   	<br /><br />
-	    	<div>
-	    		<a href="/img/write?pageNum=${pageNum }">글쓰기</a>
-	    		<br />
-	    		<br />
-			</div>
-			<c:if test="${userCnt <= 0 }">
-				<table>
-					<tr>
-				   		<td>
-				    		게시판에 저장된 글이 없습니다.
-				    	</td>
-				    </tr>	
-				</table>
-			</c:if>
-			<c:if test="${userCnt>0 }">
-				<table> 
-				    <tr> 
-				      <td>작성자</td>
-				      <td>제   목</td> 
-				      <td>이미지</td> 
-				      <td>조회수</td> 
-				      <td>별점</td> 
-				      <td>댓글수</td> 
-				      <td>좋아요</td> 
-				      <td>작성일</td> 
+    <body>  	
+		<center>
+			<h3>💌글내용 보기💌</h3>
+			<form>
+				<table>  
+				  <tr>
+				    <td>작성자</td>
+				    <td>${dto.writer}</td>
+				  </tr>  
+				  <tr>
+				  	<td>글제목</td>
+				    <td>${dto.title}</td>
+				  </tr>
+				    <c:if test="${dto.files>0 }">
+				  		<tr>  	
+				    		<td>첨부파일</td>
+				    		<td>
+				    			<c:forEach var="filename" items="${fileList }">
+				    				<img src="/resources/file/board/${filename}" width="100px" height="100px"/>
+				    			</c:forEach>
+				    		</td>
+				    	</tr>	
+				    </c:if>
+				    <tr>
+				    	<td>글내용</td>
+				    	<td><pre>${dto.content}</pre></td>
 				    </tr>
-					<c:forEach var="dto" items="${userList }">
-						   	<tr>
-							    <td>${dto.writer}</td>
-							    <td><a href="/img/content?num=${dto.num}&pageNum=${pageNum }">${dto.title}</a></td>
-							    <td>
-									<c:if test="${dto.files>0 }">
-										<img src="/resources/file/board/${imgMap.get(dto.num)}" width="100px" height="100px">
-									</c:if>
-									<c:if test="${dto.files==0 }">
-										<img src="/resources/images/1111.jpg" width="100px" height="100px">
-									</c:if>
-							    </td>
-							    <td>${dto.readcount}</td>
-							    <td>${starMap.get(dto.num)}</td>
-							    <td>${cntMap.get(dto.num)}</td>
-							    <td>${dto.likes}</td>
-							    <td>
-							    	<fmt:formatDate value="${dto.reg_date}" dateStyle="long" type="both"/>
-							    </td>
-					  		</tr>
-					</c:forEach>   
+				    <tr>
+				    	<td>조회수</td>
+				    	<td>${dto.readcount}</td>
+				    </tr>
+				    <tr>
+				    	<td>별점수</td>
+				    	<td>${formatavgStars}</td>
+				    </tr>
+				    <tr>
+				    	<td>좋아요</td>
+				    	<td>${dto.likes}</td>
+				    </tr>
+				    <tr>
+					    <td>작성일</td>
+				   	 	<td>
+					     	<fmt:formatDate value="${dto.reg_date}" dateStyle="long" type="both"/> 
+						</td>
+				    </tr>
+				  <tr height="30">
+				    <td>
+						<input type="button" value="글수정" 
+						onclick="document.location.href='/img/update?num=${dto.num}&pageNum=${pageNum}'" style="cursor: pointer;">
+				    </td>
+				    <td>
+						<input type="button" value="글삭제" 
+						onclick="document.location.href='/img/delete?num=${dto.num}&pageNum=${pageNum}'" style="cursor: pointer;">
+					</td>	
+				    <td>
+						<input type="button" value="댓글쓰기" 
+						onclick="document.location.href='/img/write?boardnum=${dto.num}&pageNum=${pageNum}'" style="cursor: pointer;">
+					</td>
+					<td>
+				       <input type="button" value="글목록" 
+				       onclick="document.location.href='/img/list?pageNum=${pageNum}'" style="cursor: pointer;">
+				    </td>
+				    <td>
+				       <input type="button" value="👍" 
+				       onclick="document.location.href='/img/likes?num=${dto.num}&pageNum=${pageNum}'" style="cursor: pointer;">
+				    </td>   
+				  </tr>
 				</table>
-			</c:if>
+			</form>
 			<br />
-			<c:if test="${userCnt>0}">
-				<c:if test="${startPage>10}"><a href="/img/list?pageNum=${startPage-10}">[이전]</a></c:if>
-				<c:forEach var="i" begin="${startPage}" end="${endPage}">
-					<a href="/img/list?pageNum=${i}">[${i}]</a>
-				</c:forEach>
-				<c:if test="${endPage < pageCnt}"><a href="/img/list?pageNum=${startPage+10}">[다음]</a></c:if>
-			</c:if>
-		</center>
+			<table>
+				<c:if test="${check == 0 }">
+					<tr>
+						<td>댓글이 없습니다...😪😪😪😪</td>
+					</tr>
+				</c:if>
+				<c:if test="${check > 0 }">
+					<tr>
+						<td>작성자</td>
+						<td>내용</td>
+						<td>별점</td>
+						<td>좋아요</td>
+						<td>작성일</td>
+						<td></td>
+					</tr>
+					<c:forEach var="replyDTO" items="${replyList}">
+						<tr>
+							<td>${replyDTO.writer}</td>
+							<td>${replyDTO.content}</td>
+							<td>${replyDTO.stars}</td>
+							<td>${replyDTO.likes}</td>
+							<td><fmt:formatDate value="${replyDTO.reg_date}" dateStyle="long" type="both"/></td>
+							<td><button onclick="document.location.href='/img/likes?num=${replyDTO.num}&pageNum=${pageNum}&boardnum=${replyDTO.boardnum}'">👍</button></td>
+						</tr>
+					</c:forEach>
+				</c:if>
+			</table>
+		</center>     
 	</body>
 </html>
--->
+    	
+</html>
+
+
+ -->
