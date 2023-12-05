@@ -7,11 +7,14 @@
 	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<title> QnA 목록 </title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="https://unpkg.com/mvp.css">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
     	<link rel="stylesheet" href="/resources/css/mainstyle.css">
 	</head>
 	<body>
+	<jsp:include page="/WEB-INF/views/main/nav.jsp" />
+	<br />
+	<br />
+	<br />
 	<div>
 	<c:if test="${sessionScope.memId == null}">
    <center>
@@ -48,7 +51,7 @@
 		        <div class = "title">
 		          <a href="qnaView?num=${article.num}&pageNum=${pageNum}"><h2>${article.title}</h2></a>
 		           <div class = "blog-text">
-              <span>${article.write}님</span>
+              <span>${article.writer}님</span>
               <h3><p><fmt:formatDate value="${article.reg_date}" type="date" dateStyle="short" /></p></h3>
               <p>조회수 ${article.readcount}</p>
             </div> 	
