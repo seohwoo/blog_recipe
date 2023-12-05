@@ -4,5 +4,8 @@
 
 <% request.setCharacterEncoding("UTF-8");%>
 
-	<b>작성 완료</b>
-	<meta http-equiv="Refresh" content="3;url=/notice/content?num=${num}&pageNum=${pageNum}" >
+	<script language="JavaScript">           
+         alert("작성 완료");
+    </script>
+ <meta http-equiv="Refresh" content="0;url=/notice/content?num=${num}&pageNum=${pageNum}" >
+	

@@ -22,17 +22,19 @@
     </div>
 
 <c:if test="${check==10}">
-	<table class="table custom-table">
+<div class="container">
+	<table class="board-table">
 		<thead>
 		<tr>
 			<td align="right"><a href="/notice/form">글쓰기</a></td>
 		</tr>
 		</thead>
 	</table>
+</div>
 	<br />
 </c:if>
 	<c:if test="${count == 0}">
-	<table class="table custom-table">
+	<table class="board-table">
 		<thead>
 			<tr>
 				<td align="center">등록된 공지사항이 없습니다.</td>
@@ -56,7 +58,7 @@
 		<c:forEach var="notice" items="#{list}">
 		<tbody>
 			<tr>
-				<td><c:forEach var="i" items="${listNum}" varStatus="status">${status.current}</c:forEach></td>
+				<td>${notice.num}</td>
 		 		<td><a href="/notice/content?num=${notice.num}&pageNum=${pageNum}">${notice.title}</a></td>
 				<td>${notice.writer}</td>
 				<td><fmt:formatDate pattern="yyyy/MM/dd" value="${notice.reg_date}" /></td>

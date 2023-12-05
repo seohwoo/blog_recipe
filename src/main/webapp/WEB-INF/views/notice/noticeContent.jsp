@@ -44,11 +44,11 @@
 		</tr>
 	</table>
 	<form id="noticeReply" method="post" action="/notice/replyPro?num=${dto.num}">
-		
+		<input type="hidden" name="pageNum" value="${pageNum}" />
 		<table class="board-table">
-			<thead>
-			<tr><td>댓글 작성</td></tr></thead>
+			
 			<thead align="center">
+			<tr><td>댓글 작성</td></tr>
 			<tr>
 				<td>제목</td>
 				<td>이름</td>
@@ -60,14 +60,14 @@
 				<td><input type="text" name="title" vaule="공지 댓글" /></td>
 				<td><input type="text" name="writer" /></td>
 				<td><textarea name="content" rows="1" cols="30"></textarea></td>
-				<td><input type="submit" value="댓글 등록" /></td>
+				<td><input type="submit" value="댓글 등록" class="btn" /></td>
 			</tr>
 			</tbody>
 		</table>
 	</form>
 	<c:if test="${count != 0}">
 	<table class="board-table">
-		<c:forEach var="reply" items="${reply}">
+		
 		<thead align="center">
 			<tr>
 				<td>이름</td>
@@ -75,6 +75,7 @@
 				<td>작성일</td>
 			</tr>
 			</thead>
+			<c:forEach var="reply" items="${reply}">
 			<tbody>
 			<tr>
 				<td>${reply.writer}</td>
@@ -100,8 +101,8 @@
 	<table class="board-table">
 	<tbody>
 			<tr>		
-		<td><input type="button" value="글삭제" onclick="document.location.href='/notice/delete?num=${dto.num}&pageNum=${pageNum}'"></td>
-		<td><input type="button" value="글수정" onclick="document.location.href='/notice/update?num=${dto.num}&pageNum=${pageNum}'"></td>
+		<td><input type="button" class="btn" value="글삭제" onclick="document.location.href='/notice/delete?num=${dto.num}&pageNum=${pageNum}'"></td>
+		<td><input type="button" class="btn" value="글수정" onclick="document.location.href='/notice/update?num=${dto.num}&pageNum=${pageNum}'"></td>
 		</tr>
 	</tbody>
 	</table>

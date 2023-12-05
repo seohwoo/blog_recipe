@@ -27,7 +27,7 @@ body {
   height: 100%;
   left: 0;
   top: 0;
-  background: url("img/bg.jpg") no-repeat center;
+  background: url("/resources/sample/bg.jpg") no-repeat center;
   background-size: cover;
   filter: blur(50px);
   z-index: -1;
@@ -44,7 +44,7 @@ body {
 }
 
 .left {
-  background: url("img/bg.jpg") no-repeat center;
+  background: url("/resources/sample/pexels-william-choquette-2641886.jpeg") no-repeat center;
   background-size: cover;
   height: 100%;
 }
