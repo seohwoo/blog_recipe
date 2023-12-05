@@ -47,7 +47,6 @@
 			<c:if test="${count > 0}">
 			<div class = "title">
 	       		<br /><br />
-	        	<p>작성된 글이 없습니다..!!</p>
 	        	<p>
 	        		<a href="/blog/qnaForm">👀 글쓰기 👀</a>
 	        	</p>
