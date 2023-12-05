@@ -11,7 +11,7 @@
 	<body>
 		<c:if test = "${check == 1}">
 			<c:set var="memId" value = "${memberDTO.id}" scope = "session" />
-			<c:redirect url = "/member/main"/>
+			<c:redirect url = "/main/main"/>
 		</c:if>
 
 		<c:if test = "${check == 0}">

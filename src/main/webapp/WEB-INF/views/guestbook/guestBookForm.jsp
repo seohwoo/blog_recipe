@@ -5,15 +5,22 @@
 
 <html>
 	<head>
-		<title>게시판</title>
+		<meta charset="utf-8">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <title>Our.Recipe Blog</title>
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+	    <!-- Font awesome icon -->
+	    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+	    <link rel="stylesheet" href="/resources/css/mainstyle.css">
 	</head>
 	
 	<body>
+	<jsp:include page="/WEB-INF/views/main/nav.jsp" />
 		<center>
 			<h2>방명록(전체 글:${userCnt})</h2>
 			<table width="350">
 				<tr>
-	    			<td align="right"><a href="/member/main">메인</a></td>
+	    			<td align="right"><a href="/main/main">메인</a></td>
 	    		</tr>
 			</table>
 			

@@ -21,7 +21,7 @@
 	</beans:bean>
 	<beans:bean id="starMap" class="java.util.HashMap" >
 		<beans:constructor-arg>
-			<beans:map key-type="Integer" value-type="String" />
+			<beans:map key-type="Integer" value-type="Double" />
 		</beans:constructor-arg>
 	</beans:bean>
 	<beans:bean id="cntMap" class="java.util.HashMap" >

@@ -31,4 +31,9 @@
 		update member set image=#{image} where id=#{id}
 	</update>
 	
+	<!-- 
+	<select id="memberWriter" resultType="spring.blog.mvc.bean.MemberDTO">
+		select * from member
+	</select>
+	 -->
 </mapper>

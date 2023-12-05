@@ -35,7 +35,6 @@ public class GuestBookController {
 		MemberDTO member = memberservice.member(id);
 		model.addAttribute("member", member);
 		
-		
 		return "guestbook/guestBookForm";
 	}
 	

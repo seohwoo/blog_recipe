@@ -7,5 +7,7 @@
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
 		
-		
+		<beans:bean id="filesDTO" class="spring.blog.mvc.bean.FilesDTO" />
+		<beans:bean id="boardDTO" class="spring.blog.mvc.bean.BoardDTO" />
+		<beans:bean id="qnaMap" class="java.util.HashMap" />
 </beans:beans>

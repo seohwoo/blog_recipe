@@ -10,6 +10,6 @@
 
 	<body>
 		<c:remove var="memId" scope="session" />
-		<c:redirect url= "/member/main" />
+		<c:redirect url= "/main/main" />
 	</body>
 </html>
