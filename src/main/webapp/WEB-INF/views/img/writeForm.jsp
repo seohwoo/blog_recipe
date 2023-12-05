@@ -29,7 +29,9 @@ pageEncoding="UTF-8"%>
 	          <h2>💌 Wirte comment 💌</h2>
         	</c:if>
           <form action="/img/writePro?pageNum=${pageNum }" method="post" enctype="multipart/form-data">
-		   		<input type="text"  class="field" name="writer" placeholder="Writer"/>
+           	<c:if test="${sessionScope.memId != null}">
+		   		<input type="text"  class="field" name="writer" value="${sessionScope.memId}" readonly="readonly"/>
+           	</c:if>
 			   	<c:if test="${boardnum==0 }">
 			   		<input type="text"  class="field" name="title" placeholder="Title" />
 			   		<button class="field btncontroll">
