@@ -13,8 +13,8 @@
 </head>
 <body>
  <jsp:include page="/WEB-INF/views/main/nav.jsp" />
-<br />
-<section class="notice">
+<br /><section class="notice">
+
   <div class="page-title">
         <div class="container">
             <h3>공지사항</h3>

@@ -32,10 +32,6 @@
 				<td>내용</td>
 				<td><textarea name="content" rows="13" cols="40" class="textarea"></textarea></td>
 			</tr>
-			<tr>
-				<td>파일 첨부</td>
-				<td><input type="file" name="filelist" multiple="multiple" ></td>
-			</tr>
 			<tr>      
  				<td colspan="2"> 
   					<input type="submit" value="작성완료" class="btn">  

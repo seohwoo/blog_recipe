@@ -50,15 +50,13 @@
 			<thead align="center">
 			<tr><td>댓글 작성</td></tr>
 			<tr>
-				<td>제목</td>
 				<td>이름</td>
 				<td>내용</td>
 			</tr>
 			</thead>
 			<tbody>
 			<tr>
-				<td><input type="text" name="title" vaule="공지 댓글" /></td>
-				<td><input type="text" name="writer" /></td>
+				<td><input type="text" name="writer" value="${sessionScope.memId}" readonly="readonly"/></td>
 				<td><textarea name="content" rows="1" cols="30"></textarea></td>
 				<td><input type="submit" value="댓글 등록" class="btn" /></td>
 			</tr>
