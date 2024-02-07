@@ -7,7 +7,7 @@
 	</c:if>
 	<c:if test="${boardnum>0 }">
 		<meta http-equiv="Refresh" content="0;url=/img/content?num=${boardnum}&pageNum=${pageNum}" >
-	</c:if>
+	</c:if> 
 </c:if>
 <c:if test="${check!=1 && result!=1}">
 	<script language="JavaScript">      

@@ -1,4 +1,4 @@
-package spring.blog.mvc;
+ package spring.blog.mvc;
 
 import java.util.ArrayList;
 import java.util.List;

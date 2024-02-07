@@ -11,7 +11,7 @@ pageEncoding="UTF-8"%>
     <link
       href="https://fonts.googleapis.com/css?family=Quicksand&display=swap"
       rel="stylesheet"
-    />
+    /> 
     <meta
       name="viewport"
       content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0"
@@ -22,9 +22,7 @@ pageEncoding="UTF-8"%>
       <div class="contact-box">
         <div class="left"></div>
         <div class="right">
-        	<c:if test="${boardnum==0 }">
-	          <h2>💌 Create Blog 💌</h2>
-        	</c:if>
+        	
         	<c:if test="${boardnum!=0 }">
 	          <h2>💌 Wirte comment 💌</h2>
         	</c:if>
@@ -34,16 +32,6 @@ pageEncoding="UTF-8"%>
            	</c:if>
 			   	<c:if test="${boardnum==0 }">
 			   		<input type="text"  class="field" name="title" placeholder="Title" />
-			   		<button class="field btncontroll">
-			            files
-			            <input
-			              type="file"
-			              class="btns"
-			              name="filelist" 
-			              multiple="multiple" 
-			              onchange="displayFileCount()"
-			            />
-		         	 </button>
 				   	<input type="hidden" name="stars" value="0"/>
 			   	</c:if>
 			   	<c:if test="${boardnum!=0 }">
@@ -67,8 +55,8 @@ pageEncoding="UTF-8"%>
 				        <input type="radio" name="stars" value="5" id="star5" style="display: none;">
 				    </div>
 					<br />
+			   		<textarea placeholder="Message" class="field" name="content"></textarea>
 				</c:if>
-			   	<textarea placeholder="Message" class="field" name="content"></textarea>
 			   	<br />
 		   		<input type="hidden" name="boardnum" value="${boardnum }"/>
 			   	<input type="submit" class="btn" value="글쓰기"/>

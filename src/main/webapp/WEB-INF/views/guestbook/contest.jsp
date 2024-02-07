@@ -6,7 +6,7 @@
 		<meta charset="UTF-8">
 		<title>Insert title here</title>
 	</head>
-
+ 
 	<body>
 		<c:forEach var="board" items="${boardList }">
 				<h4>${board.writer}</h4>

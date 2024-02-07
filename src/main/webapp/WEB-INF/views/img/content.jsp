@@ -3,7 +3,7 @@ pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
-<html>
+<html> 
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,11 +18,12 @@ pageEncoding="UTF-8"%>
     <div class = "card-wrapper">
       <div class = "card">
         <!-- card left -->
+        <!-- 
         <div class = "product-imgs">
           <div class = "img-display">
             <div class = "img-showcase">
             	<c:forEach var="filename" items="${fileList }">
-					<img src="/resources/file/board/${filename}" alt = "shoe image"/>
+					<img src="/resources/resources/realImage/${filename}" alt = "shoe image"/>
 				</c:forEach>
             </div>
           </div>
@@ -30,12 +31,13 @@ pageEncoding="UTF-8"%>
           	<c:forEach var="i" items="${arFile }" >
 	            <div class = "img-item">
 	              <a data-id = "${arFile[i]+1 }">
-	                <img src = "/resources/file/board/${fileList.get(i)}" alt = "shoe image">
+	                <img src = "/resources/resources/realImage/${fileList.get(i)}" alt = "shoe image">
 	              </a>
 	            </div>
             </c:forEach>
           </div>
         </div>
+         -->
         <!-- card right -->
         <div class = "product-content">
           <h2 class = "product-title">${dto.title }</h2>
