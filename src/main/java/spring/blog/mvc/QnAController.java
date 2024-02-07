@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -53,12 +54,20 @@ public class QnAController {
 		
 		//글 내용 보기 
 		@RequestMapping("qnaView")
-		public String qnaView(Model model, int num, int pageNum) {
+		public String qnaView(Model model, int num, int pageNum, HttpSession session) {
 			BoardDTO article = service.readContent(num);
+			int grade = 0;
+			String id = "";
+			if(session.getAttribute("memId") != null) {
+				id = (String) session.getAttribute("memId");
+				grade = service.selectGrade(id);
+			}
 			List<FilesDTO> fileList = null;
 			if(article.getFiles()>0) {
 				fileList = service.fileList(num);
 			}
+			model.addAttribute("grade",grade);
+			model.addAttribute("id",id);
 			model.addAttribute("article",article);
 			model.addAttribute("fileList",fileList);
 			model.addAttribute("pageNum",pageNum);

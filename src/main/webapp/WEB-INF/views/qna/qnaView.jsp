@@ -18,7 +18,7 @@
           <div class = "about-text">
             <div class = "title">
               <h2>${article.title}</h2>
-              <p>작성자 ${article.writer}</p>
+              <p>작성자 ${sessionScope.memId}님</p>
               <p>조회수 ${article.readcount}</p>
             </div>
             <div>
@@ -33,18 +33,15 @@
             </div>
           </div>
         </div>
-               <div class = "title">
-               <a href = "/blog/qnaList?pageNum=${pageNum}"><i class = "fab fa-pinterest" style= "font-size:50px"></i></a>
-               <p>돌아가기</p>
-               <!--  관리자만 삭제, 답글 가능하게 
-               if test="${sessionScope.grade == 10}">
-               <div class = "title">
-               <a href = "/blog/qnaForm?num=${article.num} "><i class = "fab fa-pinterest" style= "font-size:50px"></i></a>
-               <p>답글쓰기</p> 
-               </div>    -->
-               <a href = "/blog/qnaDeleteForm?num=${article.num}&pageNum=${pageNum}"><i class = "fab fa-pinterest" style= "font-size:50px"></i></a>
-               <p>삭제하기</p> 
-            
+               <div >
+	               <a href = "/blog/qnaList?pageNum=${pageNum}"><i class = "fab fa-pinterest" style= "font-size:50px"></i></a>
+	               <p>돌아가기</p>   
+	           	<c:if test="${grade == 10}">
+	               <a href = "/blog/qnaForm?num=${article.num} "><i class = "fab fa-pinterest" style= "font-size:50px"></i></a>
+	               <p>답글쓰기</p>     
+	               <a href = "/blog/qnaDeleteForm?num=${article.num}&pageNum=${pageNum}"><i class = "fab fa-pinterest" style= "font-size:50px"></i></a>
+	               <p>삭제하기</p>
+	           	</c:if>
                </div>
            </div>
     </section>   

@@ -25,4 +25,5 @@ public interface QnAMapper {
 	public int deleteNum(int num); //글 삭제
 	public int deleteFile(int freeboardnum); //파일 삭제 
 	
+	public int selectGrade(String id);	//등급 가져오기
 }

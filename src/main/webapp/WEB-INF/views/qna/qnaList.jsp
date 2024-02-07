@@ -7,48 +7,55 @@
 	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<title> QnA 목록 </title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="https://unpkg.com/mvp.css">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
     	<link rel="stylesheet" href="/resources/css/mainstyle.css">
 	</head>
 	<body>
+	<jsp:include page="/WEB-INF/views/main/nav.jsp" />
+	<br />
+	<br />
+	<br />
 	<div>
 	<c:if test="${sessionScope.memId == null}">
-   <center>
-     <table width=500 cellpadding="0" cellspacing="0"  align="center" border="1" >
-          <form name="noLogin" method="post" action="/member/loginForm"  >
-            <b> 로그인 후 이용해주세요!</b><br />
-          <div>
-               <input type="submit" value="로그인하기" >
-               <input type="button" value="회원가입 하기" OnClick="window.location='/member/inputForm'">      
-         </div>
-          </form>
-         </table>
-        </center> 
+    <div class = "container">
+    	<div class = "title">
+	       	<br /><br />
+	        <h2>QnA List</h2>
+	        <p>로그인 후 이용해주세요!</p>
+	        <p>
+	        	<a href="/member/loginForm">💌 Login 💌</a>
+	        </p>
+	        <p>
+	        	<a href="/member/inputForm">💌 Join 💌</a>
+	        </p>
+        </div>
+      </div>    
    </c:if>
    </div>
+	<div class = "container">
+		<section class = "blog" id = "blog">
    <c:if test="${sessionScope.memId != null}">
 		<c:if test="${count == 0}">
-		  <div class = "container">
-		        <div class = "title">	
-			<div class = "blog-item">
-				작성된 글이 없습니다. 
-  				<button class="btn"><input type="button" value="글쓰기" onclick="window.location='/blog/qnaForm'"></button>
-			 </div>
-		  </div>
-		</div>
+			<div class = "title">
+	       		<br /><br />
+	        	<p>작성된 글이 없습니다..!!</p>
+	        	<p>
+	        		<a href="/blog/qnaForm">👀 글쓰기 👀</a>
+	        	</p>
+        	</div>
 		</c:if>
 			<c:if test="${count > 0}">
-			<section class = "blog" id = "blog">
-			<div class = "blog-item">
-  				<button class="btn"><input type="button" value="글쓰기" onclick="window.location='/blog/qnaForm'"></button>
-			</div>
+			<div class = "title">
+	       		<br /><br />
+	        	<p>
+	        		<a href="/blog/qnaForm">👀 글쓰기 👀</a>
+	        	</p>
+        	</div>
 			<c:forEach var="article" items="${list}">
-		      <div class = "container">
 		        <div class = "title">
 		          <a href="qnaView?num=${article.num}&pageNum=${pageNum}"><h2>${article.title}</h2></a>
 		           <div class = "blog-text">
-              <span>${article.writer}</span>
+              <span>${article.writer}님</span>
               <h3><p><fmt:formatDate value="${article.reg_date}" type="date" dateStyle="short" /></p></h3>
               <p>조회수 ${article.readcount}</p>
             </div> 	
@@ -67,8 +74,8 @@
 				</c:if>
 			 </c:if>
 			</c:if>
-			</div>
 		</section>
+		</div>
 		<jsp:include page="/WEB-INF/views/main/footer.jsp" />
 	</body>
 </html>

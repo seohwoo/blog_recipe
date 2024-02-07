@@ -122,4 +122,10 @@ public class QnAServiceImpl implements QnAService {
 		}
 		return check;
 		}
+
+	@Override
+	public int selectGrade(String id) {
+		int grade = mapper.selectGrade(id);
+		return grade;
+	}
 }
