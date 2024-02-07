@@ -13,7 +13,7 @@
 </head>
 <body>
  <jsp:include page="/WEB-INF/views/main/nav.jsp" />
-<br /><section class="notice">
+<section class="notice">
 
   <div class="page-title">
         <div class="container">
@@ -22,7 +22,7 @@
     </div>
 
 <c:if test="${check==10}">
-<div class="container">
+<div class="container-notice">
 	<table class="board-table">
 		<thead>
 		<tr>
@@ -34,7 +34,7 @@
 	<br />
 </c:if>
 	<c:if test="${count == 0}">
-	<div class="container">
+	<div class="container-notice">
 	<table class="board-table">
 		<thead>
 			<tr>
@@ -46,7 +46,7 @@
 	</c:if>
 	<c:if test="${count > 0 }">
 	 <div id="board-list">
-        <div class="container">
+        <div class="container-notice">
             <table class="board-table">
                 <thead align="center">
 		<tr>
@@ -73,7 +73,7 @@
 	<br />
 	
 	<c:if test="${count > 0}">
-	 <center><div class="container">
+	 <center><div class="container-notice">
 		<c:if test="${startPage > 10}"><a href="/free/list?pageNum=${startPage-10}">[이전]</a></c:if>
 			<c:forEach var="i" begin="${startPage}" end="${endPage}">
 				<a href="/notice/list?pageNum=${i}">[${i}]</a>
@@ -85,5 +85,6 @@
 
 	</div>
 </div>
+</section>
 <jsp:include page="/WEB-INF/views/main/footer.jsp" />
 </body>
