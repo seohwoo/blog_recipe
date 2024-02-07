@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 	<head>
 		<meta charset="utf-8">
 	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,8 +12,7 @@
 	    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
 	    <link rel="stylesheet" href="/resources/css/mainstyle.css">
 	</head>
-
-	<body onload="begin()" align-items="center" justify-content="center">
+	<body align-items="center" justify-content="center">
 		<!-- 
 		<jsp:include page="/WEB-INF/views/main/nav.jsp" />
 		<header>
@@ -22,25 +22,20 @@
 		
 		
       <header>
-      <div class = "banner">
-        <div class = "container">
-          <h1 class = "banner-title">
-            <span>Our.</span> Recipe Blog
-          </h1>
-          <p>Search for the recipe you want..!!</p>
-          <form name="myform" action="/member/loginPro" method="post" onSubmit="return checkIt()">
-            <input type = "text" name="id" class = "search-input" placeholder="ID">
-            <input type = "password" name="pw" class = "search-input" placeholder="PassWord">
-            
-            <button type = "submit" class = "search-btn">
-            
-              <i class = "fas fa-search"></i>
-            </button>
-          </form>
-        </div>
+      <div class="container-login">
+      	<div class="login-page" style="margin-top: 300px;">
+		  <div class="form">
+		    <form name="myform" action="/member/loginPro" method="post" onSubmit="return checkIt()" class="login-form">
+		      <input type="text" name="id" placeholder="username"/>
+		      <input type="password" name="pw" placeholder="password"/>
+		      <button type = "submit" >LOG IN</button>
+		      <p class="message">아직 회원이 아니신가요? <a href="/member/inputForm">Create an account</a></p>
+		    </form>
+		  </div>
+		</div>
       </div>
       </header>
-		
+	<jsp:include page="/WEB-INF/views/main/footer.jsp" />
 		
 		
 		
