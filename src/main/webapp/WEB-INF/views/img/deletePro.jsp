@@ -3,7 +3,7 @@
 	
 <c:if test="${check==1}">
 	<meta http-equiv="Refresh" content="0;url=/img/list?pageNum=${pageNum }" >
-</c:if>
+</c:if> 
 <c:if test="${check!=1 }">
 	<script language="JavaScript">      
     	alert("삭제불가..!!🤬🤬🤬");

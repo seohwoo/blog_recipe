@@ -234,4 +234,19 @@ public class ImgServiceImpl implements ImgService{
 		model.addAttribute("replyCnt", replyCnt);
 	}
 
+	@Override
+	public int maxNum() {
+		return mapper.maxNum();
+	}
+
+	@Override
+	public int imgWirte(BoardDTO dto) {
+		return mapper.imgWirte(dto);
+	}
+
+	@Override
+	public int imgFileInsert(int boardnum, String filename) {
+		return mapper.imgFileInsert(boardnum, filename);
+	}
+
 }

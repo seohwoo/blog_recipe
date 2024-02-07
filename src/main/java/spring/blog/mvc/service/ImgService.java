@@ -2,6 +2,7 @@ package spring.blog.mvc.service;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -19,5 +20,8 @@ public interface ImgService {
 	public int update(BoardDTO dto);
 	public int likesUp(int num);
 	public void search(String search, Model model);
+	public int maxNum();
+	public int imgWirte(BoardDTO dto);
+	public int imgFileInsert(int boardnum, String filename);
 	
 }

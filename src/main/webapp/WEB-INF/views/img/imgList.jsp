@@ -3,7 +3,7 @@ pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
-<html>
+<html> 
   	<head>
 	    <meta charset="utf-8">
 	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -23,7 +23,7 @@ pageEncoding="UTF-8"%>
           			<h2>Blog List</h2>
           			<p>recent & best recipes on the blog</p>
           			<p>
-          				<a href="/img/write?pageNum=${pageNum}">💌 Create Blog 💌</a>
+          				<a href="/img/create?pageNum=${pageNum}">💌 Create Blog 💌</a>
           			</p>
         		</div>
 		        <div class = "design-content">
@@ -38,7 +38,7 @@ pageEncoding="UTF-8"%>
 				            	<div class = "design-img">
 				              		<span><i class = "far fa-heart"></i> ${dto.likes }</span>
 				              			<c:if test="${dto.files>0 }">
-											<img src="/resources/file/board/${imgMap.get(dto.num)}" width="300px" height="400px" />
+											<img src="/resources/realImage/${imgMap.get(dto.num)}" width="300px" height="400px" />
 										</c:if>
 										<c:if test="${dto.files==0 }">
 											<img src="/resources/images/1111.jpg" width="300px" height="400px" />
