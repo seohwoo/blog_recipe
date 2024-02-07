@@ -18,4 +18,6 @@ public interface MemberMapper {
 	// TEST
 	public void imageChange(@Param("image") String image,
 							@Param("id") String id);
+	
+	//public MemberDTO memberWriter();
 }

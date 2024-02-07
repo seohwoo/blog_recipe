@@ -72,4 +72,11 @@ public class MemberServiceImpl implements MemberService {
 		return result;
 	}
 
+	/*
+	@Override
+	public MemberDTO memberWriter() {
+		mapper.memberWriter();
+		
+	}
+	*/
 }

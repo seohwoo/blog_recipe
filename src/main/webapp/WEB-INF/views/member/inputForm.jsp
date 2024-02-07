@@ -2,14 +2,24 @@
 
 <html>
 	<head>
-		<title>회원가입</title>
-		<link href="/resources/css/style.css" rel="stylesheet" type="text/css">
-		<script src="/resources/js/member.js" language="javascript"></script>
+		<meta charset="utf-8">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <title>Our.Recipe Blog</title>
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+	    <!-- Font awesome icon -->
+	    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+	    <link rel="stylesheet" href="/resources/css/mainstyle.css">
 	</head>
 	
 	<body>
+		<jsp:include page="/WEB-INF/views/main/nav.jsp" />
+		<header>
+		
+		<div class="login-form">
+		
+		
 		<form method="post" action="/member/inputPro" name="userinput" onSubmit="return inputCheckIt()">
-			<table width="600" border="1" cellspacing="0" cellpadding="3" align="center" >
+			<table width="600" border="1" cellspacing="0" cellpadding="3" align="center" bgcolor="#F6F6F6">
 				<tr> 
 					<td colspan="2" height="39" align="center" >
 						<font size="+1" ><b>회원가입</b></font>
@@ -91,6 +101,26 @@
 				</tr>
 			</table>
 		</form>
+		
+		
+		</div>
+		
+		
+		</header>
+		
+		
+		<style>
+			.login-form {
+			  position: fixed;
+			  top: 50%;
+			  left: 50%;
+			  transform: translate(-50%, -50%);
+			  margin: 0 auto;
+			  /* 추가적인 스타일링 원하는 대로 추가 */
+			}
+		</style>
+					
+		
 	</body>
 </html>
 

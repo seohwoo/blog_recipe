@@ -67,7 +67,7 @@ public class MemberController {
 	@RequestMapping("logout")
 	public String Logout(HttpSession session) {
 		session.invalidate();
-		return "redirect:/member/main";
+		return "redirect:/main/main";
 	}
 	
 	

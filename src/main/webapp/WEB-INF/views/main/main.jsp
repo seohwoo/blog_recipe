@@ -15,25 +15,9 @@ pageEncoding="UTF-8"%>
     <!-- header -->
       <jsp:include page="/WEB-INF/views/main/nav.jsp" />
       <header>
-      <div class = "banner">
-        <div class = "container">
-          <h1 class = "banner-title">
-            <span>Our.</span> Recipe Blog
-          </h1>
-          <p>Search for the recipe you want..!!</p>
-          <form>
-            <input type = "text" class = "search-input" placeholder="find your recipe . . .">
-            <button type = "submit" class = "search-btn">
-              <i class = "fas fa-search"></i>
-            </button>
-          </form>
-        </div>
-      </div>
+      <jsp:include page="/WEB-INF/views/main/search.jsp" />
       </header>
     <!-- end of header -->
-    <jsp:include page="/WEB-INF/views/main/bestBlog.jsp" />
-    <jsp:include page="/WEB-INF/views/main/blogList.jsp" />
-    <jsp:include page="/WEB-INF/views/main/blogContent.jsp" />
     <jsp:include page="/WEB-INF/views/main/footer.jsp" />
   </body>
 </html>

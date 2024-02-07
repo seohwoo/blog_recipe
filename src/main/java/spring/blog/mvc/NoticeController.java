@@ -32,6 +32,7 @@ public class NoticeController {
 	@RequestMapping("form")
 	public String noticeForm(Model model, @RequestParam(value="num", defaultValue="0" )int num) {
 		
+		
 		model.addAttribute("num", num);
 		return "notice/noticeForm";
 	}
@@ -46,7 +47,7 @@ public class NoticeController {
 			}
 		}
 		dto.setFiles(uploadFile);
-		service.writeNotice(dto);
+		service.writeNotice(dto); 
 		
 		if(uploadFile>0) {
 			String filePath= request.getServletContext().getRealPath("/resources/file/board/");
@@ -61,7 +62,8 @@ public class NoticeController {
 		if(session.getAttribute("memId") != null) {
 			String id = (String)session.getAttribute("memId");
 			int check = service.adminCheck(id);
-		
+			
+			
 			model.addAttribute("check", check);
 			}
 		return "notice/noticeList";

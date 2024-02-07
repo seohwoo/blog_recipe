@@ -1,65 +1,50 @@
 <%@ page contentType = "text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
 <html>
 	<head>
-		<title>QnA 보기</title>
-		<link rel="stylesheet" href="https://unpkg.com/mvp.css">
+		<meta charset="utf-8">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <title> QnA 보기</title>
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+	    <!-- Font awesome icon -->
+	    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+	    <link rel="stylesheet" href="/resources/css/mainstyle.css">
 	</head>
-	<body >  
-	<center>
-		<b>QnA</b>
-		<br />
-			<table width="500" border="1" cellspacing="0" cellpadding="0"  align="center">  
-				<tr height="30">
-					<td align="center" width="125" >글번호</td>
-					<td align="center" width="125" align="center">${article.num}</td>
-					<td align="center" width="125" >조회수</td>
-					<td align="center" width="125" align="center">${article.readcount}</td>
-				</tr>
-				<tr height="30">
-					<td align="center" width="125" >작성자</td>
-					<td align="center" width="125" align="center">${article.writer}</td>
-					<td align="center" width="125" >작성일</td>
-					<td align="center" width="125" align="center"><fmt:formatDate value="${article.reg_date}" type="date" dateStyle="short" /></td>
-				</tr>
-		 		<tr height="30">
-					<td align="center" width="125" >글제목</td>
-					<td align="center" width="375" align="center" colspan="3">${article.title}</td>
-				</tr>
-				
-				<c:if test="${fileList!=null}">
-					<tr height="30">
-						<td align="center" width="125" >첨부파일</td>
-						<td align="center" width="375" align="center" colspan="3">
-						<c:forEach var="filesDTO" items="${fileList}">
-						 	<img src="/resources/file/qna/${filesDTO.filename}" border="0"  height="200">   
-						</c:forEach>
-						</td>
-					</tr>
+	<body >  	
+<section class = "about" id = "about">
+      <div class = "container">
+        <div class = "about-content">
+          <div class = "about-text">
+            <div class = "title">
+              <h2>${article.title}</h2>
+              <p>작성자 ${sessionScope.memId}님</p>
+              <p>조회수 ${article.readcount}</p>
+            </div>
+            <div>
+	            <c:if test="${fileList!=null}">				
+					<c:forEach var="filesDTO" items="${fileList}">
+						<img src="/resources/file/qna/${filesDTO.filename}" border="0" width="100" height="250"><br />
+					</c:forEach>
 				</c:if>
-				
-				<tr>
-					<td align="center" width="125">글내용</td>
-					<td align="left" width="375" colspan="3"><pre>${article.content}</pre></td>
-		 		</tr>
-				<tr height="30">      
-					<td colspan="4"  align="right" > 
-					<!--  관리자만 삭제, 답글 가능하게 
-					<c:if test="${sessionScope.grade == 10}">
-						<input type="button" value="글삭제" 
-						onclick="document.location.href='/blog/qnaDeleteForm?num=${article.num}&pageNum=${pageNum}'">
-						&nbsp;&nbsp;&nbsp;&nbsp;=
-						<input type="button" value="답글쓰기"
-						onclick="document.location.href='/blog/qnaForm?num=${article.num}}'">
-						&nbsp;&nbsp;&nbsp;&nbsp;
-					</c:if> -->
-						<input type="button" value="글목록"  onclick="document.location.href='/blog/qnaList?pageNum=${pageNum}'">
-					</td>
-		 		</tr>
-		 	</table>    
-		<br />    
+			</div>
+			<div class = "title">
+            <p>${article.content}</p>
+            </div>
+          </div>
+        </div>
+               <div >
+	               <a href = "/blog/qnaList?pageNum=${pageNum}"><i class = "fab fa-pinterest" style= "font-size:50px"></i></a>
+	               <p>돌아가기</p>   
+	           	<c:if test="${grade == 10}">
+	               <a href = "/blog/qnaForm?num=${article.num} "><i class = "fab fa-pinterest" style= "font-size:50px"></i></a>
+	               <p>답글쓰기</p>     
+	               <a href = "/blog/qnaDeleteForm?num=${article.num}&pageNum=${pageNum}"><i class = "fab fa-pinterest" style= "font-size:50px"></i></a>
+	               <p>삭제하기</p>
+	           	</c:if>
+               </div>
+           </div>
+    </section>   
 	</body>
 </html>      
 

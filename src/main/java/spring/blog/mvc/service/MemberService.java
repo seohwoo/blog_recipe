@@ -17,4 +17,6 @@ public interface MemberService {
 	
 	// TEST
 	public boolean imageChange(String id, String path, MultipartFile image);
+
+	//public MemberDTO memberWriter();
 }

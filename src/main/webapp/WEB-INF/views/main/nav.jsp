@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
   <head>
@@ -16,12 +17,24 @@ pageEncoding="UTF-8"%>
         <div class = "container">
           <a href = "/main/main" class = "navbar-brand">Our.Recipe</a>
           <div class = "navbar-nav">
-            <a href = "/guestbook/guestBookForm">GuestBook</a>
+            
+            
+            <c:if test="${sessionScope.memId != null}">
+            	<a href = "/guestbook/guestBookForm">GuestBook</a>
+            </c:if>
+            
             <a href = "/img/list">Blog</a>
             <a href = "/notice/list">Notice</a>
             <a href = "/blog/qnaList">QnA</a>
+            
+            <c:if test="${sessionScope.memId == null}">
             <a href = "/member/loginForm">Login</a>
             <a href = "/member/inputForm">Sign-up</a>
+            </c:if>
+            <c:if test="${sessionScope.memId != null}">
+            <a href = "/member/logout">Logout</a>
+            <a href = "/member/main">MyPage</a>
+            </c:if>
           </div>
         </div>
       </nav>

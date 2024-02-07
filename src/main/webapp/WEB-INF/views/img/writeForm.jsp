@@ -3,34 +3,54 @@ pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>이미지게시판</title>
-        <link rel="stylesheet" href="https://unpkg.com/mvp.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-    	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script> 
-    </head>
-    <body>
-    	<center>
-    		<br /><br />
-		   	<h2>💌게시글작성💌</h2>
-		   	<br /><br />
-			<form action="/img/writePro?pageNum=${pageNum }" method="post" enctype="multipart/form-data">
-		   		<label>작성자</label>
-		   		<input type="text" name="writer"/>
+  <head>
+    <title>Contact us</title>
+   	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="/resources/css/mainstyle.css">
+    <link rel="stylesheet" href="/resources/css/formstyle.css">
+    <link
+      href="https://fonts.googleapis.com/css?family=Quicksand&display=swap"
+      rel="stylesheet"
+    />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <div class="contact-box">
+        <div class="left"></div>
+        <div class="right">
+        	<c:if test="${boardnum==0 }">
+	          <h2>💌 Create Blog 💌</h2>
+        	</c:if>
+        	<c:if test="${boardnum!=0 }">
+	          <h2>💌 Wirte comment 💌</h2>
+        	</c:if>
+          <form action="/img/writePro?pageNum=${pageNum }" method="post" enctype="multipart/form-data">
+           	<c:if test="${sessionScope.memId != null}">
+		   		<input type="text"  class="field" name="writer" value="${sessionScope.memId}" readonly="readonly"/>
+           	</c:if>
 			   	<c:if test="${boardnum==0 }">
-			   		<label>제목</label>
-			   		<input type="text" name="title" />
-			   		<label>파일</label>
-			   		<input type="file" name="filelist" multiple="multiple" />
+			   		<input type="text"  class="field" name="title" placeholder="Title" />
+			   		<button class="field btncontroll">
+			            files
+			            <input
+			              type="file"
+			              class="btns"
+			              name="filelist" 
+			              multiple="multiple" 
+			              onchange="displayFileCount()"
+			            />
+		         	 </button>
 				   	<input type="hidden" name="stars" value="0"/>
 			   	</c:if>
 			   	<c:if test="${boardnum!=0 }">
 				   	<input type="hidden" name="title" value="이미지댓글"/>
 				   	<input type="hidden" name="files" value="0"/>
 				   	<br />
-				   	<label>별점</label>
+				   	<h3>👍 STAR 👍</h3>
 				   	<div class="stars1">
 				        <label for="star1" class="star" data-rating="1"> <i class="far fa-star" style="color: #ffc83d;"></i></label>
 				        <label for="star2" class="star" data-rating="2"> <i class="far fa-star" style="color: #ffc83d;"></i></label>
@@ -46,16 +66,21 @@ pageEncoding="UTF-8"%>
 				        <input type="radio" name="stars" value="4" id="star4" style="display: none;">
 				        <input type="radio" name="stars" value="5" id="star5" style="display: none;">
 				    </div>
+					<br />
 				</c:if>
-			   	<label>내용</label>
-			   	<textarea rows="5" cols="60" name="content"></textarea>
+			   	<textarea placeholder="Message" class="field" name="content"></textarea>
 			   	<br />
 		   		<input type="hidden" name="boardnum" value="${boardnum }"/>
-			   	<input type="submit" value="글쓰기"/>
+			   	<input type="submit" class="btn" value="글쓰기"/>
 			</form>
-		</center>
-    </body>
-    <script>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+
+
+<script>
 const stars = document.querySelectorAll('.stars1 .star');
 const radioButtons = document.querySelectorAll('input[name="stars"]');
 
@@ -83,10 +108,24 @@ function validateAndSubmit() {
         return true;
     }
 }
+
+function displayFileCount() {
+    // 파일 입력 엘리먼트 참조
+    var fileInput = document.getElementById("fileInput");
+
+    // 선택된 파일의 개수 가져오기
+    var fileCount = fileInput.files.length;
+    var buttonText = "선택된 파일 수: " + fileCount;
+
+    // 페이지 로딩 시 버튼 텍스트 설정
+    document.addEventListener("DOMContentLoaded", function () {
+      var buttonElement = document.querySelector("button");
+      buttonElement.innerText = buttonText;
+    });
+  }
 </script>
 <style>
 .stars1 {
-    padding-left: 70px;
     font-size: 30px;
     cursor: pointer;
 }
@@ -95,4 +134,3 @@ function validateAndSubmit() {
     transition: color 0.3s;
 }
 </style>
-</html>
