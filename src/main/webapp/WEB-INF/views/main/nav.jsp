@@ -19,17 +19,31 @@ pageEncoding="UTF-8"%>
           <div class = "navbar-nav">
             
             
-            <c:if test="${sessionScope.memId != null}">
-            	<a href = "/guestbook/guestBookForm">GuestBook</a>
+           
+            <a></a>
+            <a></a>
+            <a></a>
+            <a></a>
+            <a></a>
+            <a></a>
+            <a></a>
+            <a></a>
+            <a></a>
+            <a></a>
+            <a></a>
+            <a></a>
+            <a></a>
+            <a></a>
+            <a></a>
+             <c:if test="${sessionScope.memId == null}">
+    	        <a></a>
+	            <a></a>
             </c:if>
-            
             <a href = "/img/list">Blog</a>
             <a href = "/notice/list">Notice</a>
-            <a href = "/blog/qnaList">QnA</a>
             
             <c:if test="${sessionScope.memId == null}">
             <a href = "/member/loginForm">Login</a>
-            <a href = "/member/inputForm">Sign-up</a>
             </c:if>
             <c:if test="${sessionScope.memId != null}">
             <a href = "/member/logout">Logout</a>
