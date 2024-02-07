@@ -8,6 +8,7 @@ section.notice {
 }
 
 .page-title {
+	padding-top: 120px;
   margin-bottom: 60px;
 }
 .page-title h3 {
@@ -165,7 +166,7 @@ section.notice {
   display: block;
   clear: both;
 }
-.container {
+.container-notice {
   width: 1100px;
   margin: 0 auto;
 }
