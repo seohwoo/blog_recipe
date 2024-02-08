@@ -30,10 +30,6 @@ pageEncoding="UTF-8"%>
            	<c:if test="${sessionScope.memId != null}">
 		   		<input type="text"  class="field" name="writer" value="${sessionScope.memId}" readonly="readonly"/>
            	</c:if>
-			   	<c:if test="${boardnum==0 }">
-			   		<input type="text"  class="field" name="title" placeholder="Title" />
-				   	<input type="hidden" name="stars" value="0"/>
-			   	</c:if>
 			   	<c:if test="${boardnum!=0 }">
 				   	<input type="hidden" name="title" value="이미지댓글"/>
 				   	<input type="hidden" name="files" value="0"/>
@@ -58,7 +54,7 @@ pageEncoding="UTF-8"%>
 			   		<textarea placeholder="Message" class="field" name="content"></textarea>
 				</c:if>
 			   	<br />
-		   		<input type="hidden" name="boardnum" value="${boardnum }"/>
+		   		<input type="hidden" name="boardnum" value="${boardnum}"/>
 			   	<input type="submit" class="btn" value="글쓰기"/>
 			</form>
         </div>

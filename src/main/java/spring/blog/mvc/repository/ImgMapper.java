@@ -12,6 +12,8 @@ public interface ImgMapper {
 	
 	public List<Integer> selectNum(int boardnum);
 	public int imgWirte(BoardDTO dto);
+	public void updateImgWrite(BoardDTO dto);
+	public List<BoardDTO> lastImgNum();
 	public int maxNum();
 	public int imgFileInsert(	@Param("boardnum") int boardnum,
 								@Param("filename") String filename);

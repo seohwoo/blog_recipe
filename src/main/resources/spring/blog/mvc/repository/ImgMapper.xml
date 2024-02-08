@@ -19,6 +19,14 @@
 		)
 	</insert>
 	
+	<update id="updateImgWrite" parameterType="spring.blog.mvc.bean.BoardDTO">
+		update board set content=#{content}, files=#{files} where num=#{num}
+	</update>
+	
+	<select id="lastImgNum" resultType="spring.blog.mvc.bean.BoardDTO">
+		select * from board order by num desc
+	</select>
+	
 	<select id="maxNum" resultType="int">
 		select NVL(max(num), 0) from board where tablenum=99
 	</select>

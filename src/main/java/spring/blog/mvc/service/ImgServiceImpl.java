@@ -249,4 +249,14 @@ public class ImgServiceImpl implements ImgService{
 		return mapper.imgFileInsert(boardnum, filename);
 	}
 
+	@Override
+	public void updateImgWrite(BoardDTO dto) {
+		mapper.updateImgWrite(dto);
+	}
+
+	@Override
+	public List<BoardDTO> lastImgNum() {
+		return mapper.lastImgNum();
+	}
+
 }

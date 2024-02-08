@@ -140,6 +140,13 @@ public class ImgController {
 		int check = 0;
 		BoardDTO boardDTO = new BoardDTO();
 		boardDTO.setContent(content.replace("src=\"/resources/summernoteImage/", "src=\"/resources/realImage/"));
+		boardDTO.setBoardnum(0);
+		boardDTO.setStars(0);
+		boardDTO.setTitle(title);
+		boardDTO.setWriter(writer);
+		boardDTO.setFiles(cnt-1);
+		check = service.imgWirte(boardDTO);
+		int maxnum = service.lastImgNum().get(0).getNum();
 	    if(fileNames != null) {
 	    	isFile(fileNames, boardDTO.getContent());
 			for (String filename : realFiles) {
@@ -147,7 +154,6 @@ public class ImgController {
 					File sourceFile = new File(fileRoot+filename);
 					File targetDirectory = new File(realRoot);
 					String ext = filename.substring(filename.lastIndexOf("."));
-					int maxnum = service.maxNum() + 1;
 					String realname = "file_" + maxnum + "_"+cnt+ext;
 					service.imgFileInsert(maxnum, realname);
 					Files.copy(sourceFile.toPath(), targetDirectory.toPath().resolve(realname), StandardCopyOption.REPLACE_EXISTING);
@@ -162,11 +168,8 @@ public class ImgController {
 				sourceFile.delete();
 			}
 			boardDTO.setFiles(cnt-1);
-			boardDTO.setBoardnum(0);
-			boardDTO.setStars(0);
-			boardDTO.setTitle(title);
-			boardDTO.setWriter(writer);
-			check = service.imgWirte(boardDTO);
+			boardDTO.setNum(maxnum);
+			service.updateImgWrite(boardDTO);
 	    }
 	    model.addAttribute("pageNum", pageNum);
 	    model.addAttribute("check", check);

@@ -44,24 +44,19 @@ pageEncoding="UTF-8"%>
           </div>
           
           <div class = "purchase-info">
-	           <button type = "button" class = "btn" onclick="document.location.href='/img/update?num=${dto.num}&pageNum=${pageNum}'">
-	           	수정하기
-	           </button>
-	           <button type = "button" class = "btn second" onclick="document.location.href='/img/delete?num=${dto.num}&pageNum=${pageNum}'">
+	           <button type = "button" class = "btn" onclick="document.location.href='/img/delete?num=${dto.num}&pageNum=${pageNum}'">
 	           	삭제하기
 	           </button>
 	           <button type = "button" class = "btn third" onclick="document.location.href='/img/write?boardnum=${dto.num}&pageNum=${pageNum}'">
 	           	댓글쓰기
 	           </button>
-	           <button type = "button" class = "btn" onclick="document.location.href='/img/list?pageNum=${pageNum}'">
+	           <input type = "number" value = "${dto.likes }" readonly="readonly">
+	           <button type = "button" class = "btn" onclick="document.location.href='/img/likes?num=${dto.num}&pageNum=${pageNum}'">
+	              👍
+	           </button>
+	           <button type = "button" class = "btn second" onclick="document.location.href='/img/list?pageNum=${pageNum}'">
 	           	목록으로
 	           </button>
-          </div>
-          <div class = "purchase-info">
-            <input type = "number" value = "${dto.likes }" readonly="readonly">
-            <button type = "button" class = "btn" onclick="document.location.href='/img/likes?num=${dto.num}&pageNum=${pageNum}'">
-              👍
-            </button>
           </div>
           <c:if test="${check == 0 }">
           	<div class = "product-detail">

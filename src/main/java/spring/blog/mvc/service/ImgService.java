@@ -23,5 +23,6 @@ public interface ImgService {
 	public int maxNum();
 	public int imgWirte(BoardDTO dto);
 	public int imgFileInsert(int boardnum, String filename);
-	
+	public void updateImgWrite(BoardDTO dto);
+	public List<BoardDTO> lastImgNum();
 }

@@ -36,7 +36,7 @@ pageEncoding="UTF-8"%>
 				            	<div class = "design-img">
 				              		<span><i class = "far fa-heart"></i> ${dto.likes }</span>
 				              			<c:if test="${dto.files>0 }">
-											<img src="/resources/file/board/${imgMap.get(dto.num)}" width="300px" height="400px" />
+											<img src="/resources/realImage/${imgMap.get(dto.num)}" width="300px" height="400px" />
 										</c:if>
 										<c:if test="${dto.files==0 }">
 											<img src="/resources/images/1111.jpg" width="300px" height="400px" />

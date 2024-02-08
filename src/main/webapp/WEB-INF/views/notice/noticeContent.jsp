@@ -56,7 +56,10 @@
 			</thead>
 			<tbody>
 			<tr>
-				<td><input type="text" name="writer" value="${sessionScope.memId}" readonly="readonly"/></td>
+				<td>
+					<input type="text" name="writer" value="${sessionScope.memId}" readonly="readonly"/>
+					<input type="hidden" name="title" value="공지게시판 댓글"/>
+				</td>
 				<td><textarea name="content" rows="1" cols="30"></textarea></td>
 				<td><input type="submit" value="댓글 등록" class="btn" /></td>
 			</tr>
