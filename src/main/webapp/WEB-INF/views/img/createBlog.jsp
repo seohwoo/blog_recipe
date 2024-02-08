@@ -118,8 +118,8 @@ pageEncoding="UTF-8"%>
 	</head>
 	<body>
 		<jsp:include page="/WEB-INF/views/main/nav.jsp" />
-    	<div class = "card-wrapper">
-	    	<h2>💌 Create Blog 💌</h2>
+    	<div class = "card-wrapper" style="display: grid;">
+	    	<h2 style="margin-top: 100px;">💌 Create Blog 💌</h2>
         	<form action="/img/editorPro" method="post" enctype="multipart/form-data" id = "addProduct">
 	        	<c:if test="${sessionScope.memId != null}">
 			   		<input type="text"  class="field" name="writer" value="${sessionScope.memId}" readonly="readonly"/>

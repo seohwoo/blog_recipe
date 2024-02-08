@@ -105,5 +105,7 @@
 	</tbody>
 	</table>
 	</c:if>
+	</div>
+	</div>
 	<jsp:include page="/WEB-INF/views/main/footer.jsp" />
 </body>
